@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --regular: "Nanum Pen Script";
+  --heading: "Fredericka The Great";
+  --code: "Baloo 2";
+
+  font-family: var(--regular);
+  font-size: 32px;
+  line-height: 1em;
+}
+
+/** Formatting **/
+body {
+  background-image: url(https://www.textures.com/system/gallery/photos/Wood/Fine%20Wood/33933/WoodFine0033_1_350.jpg);
+  background-size: tile;
+}
+
+form {
+  display: grid;
+
+  padding: 2rem;
+  width: 26rem;
+  margin: 4rem auto;
+  box-sizing: border-box;
+
+  background-color: #f2f2f2;
+  border: 1rem solid white;
+  box-shadow: 0.5cm 0.5cm 1cm rgba(0,0,0,0.5);
+}
+
+label, output, h1, h2, h3, em {
+  font-family: var(--heading);
+  font-weight: 400;
+}
+h1 {
+  font-size: 1.5rem;
+  margin-block-end: 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 2pt solid white;
+}
+h2 {
+  font-size: 1.2rem;
+  margin-block-end: 0.5em;
+}
+
+blockquote {
+  background-color: #f2f2f2;
+  padding: 0.1em;
+  padding-right: 1em;
+  border-left: 3px solid red;
+  box-shadow: -1em 0 #f2f2f2;
+  line-height: 1em;
+}
+blockquote p {
+  border-bottom: 2px solid #e2e2e2;
+  border-top: 2px solid #e2e2e2;
+}
+
+/** Elements **/
+
+input, select, option, textarea {
+  min-width: 0;
+  outline: none;
+  border: none;
+  background-color: white;
+  padding: 0.1em 0.2em;
+  font-family: var(--regular);
+  font-size: 1rem;
+}
+input[type=number]{
+  font-size: 1.2rem;
+  padding: 0em 0.2em;
+  text-align: center;
+}
+input[type=radio] {
+  margin: auto;
+}
+
+mark-down {
+  position: relative;
+  box-sizing: border-box;
+  min-height: 20rem;
+}
+mark-down .md-viewer, mark-down .md-editor {
+  background-color: white;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+mark-down .md-toggle {
+  padding: 0.25rem;
+  font-size: 0.5rem;
+  background-color: white;
+}
+
+label, output {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.typelbl {
+  display: inline;
+  position: relative;
+  justify-self: center;
+
+  box-sizing: border-box;
+  font-size: 0.5rem;
+  padding: 0 1em;
+  top: -0.1em;
+
+  font-family: var(--code);
+  border-radius: 0.5em;
+  background-color: grey;
+  color: white;
+}
+
+img {
+  max-width: 100%;
+}
+
+/** Special Cases **/
+#name {
+  font-size: 2rem;
+}
+
+#lvl {
+  font-size: 1.2rem;
+  background-color: transparent;
+  font-family: var(--heading)
+}
+
+#exp, label[for=exp] {
+  text-align: left;
+}
+
+#hp {
+  text-align: right;
+}
+#max-hp {
+  line-height: 100%;
+  font-size: 1.5rem;
+  font-family: var(--regular);
+}
+#max-hp:before {
+  content: "/";
+}
+#rest {
+  font-size: 0.75rem;
+}
+
+#instr summary {
+  font-size: 0.8rem;
+}
+
+select#pronouns, select#align {
+  color: black;
+}
+select#pronouns option, select#align option {
+  color: black;
+}
+
+section#saveload input[type=button] {
+  padding: 0.1em 1em;
+}
+
+/** Roller **/
+#roll-total {
+  font-size: 4rem;
+  line-height: 100%;
+}
+#ndice-ctrls {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.5rem;
+}
+#ndice-ctrls input[type=button] {
+  width: 2rem;
+}
+#ndice:before {
+  content: "x";
+  font-size: 0.8em;
+}
+#roll-string {
+  word-wrap: break-word;
+  text-align: left;
+}
+
+/** Sections **/
+section {
+  display: grid;
+  column-gap: 0.5rem;
+  row-gap: 0.25rem;
+  margin: 0.5rem auto;
+  width: 100%;
+}
+
+section#basics {
+  grid-template-columns: [left] 3rem [lvl] auto [pronouns] auto auto [right];
+}
+input#exp, label[for=exp] {
+  grid-column-start: lvl;
+  grid-column-end: right;
+}
+input#name {
+  grid-column-start: left;
+  grid-column-end: right;
+}
+#pronouns {
+  grid-column-start: left;
+  grid-column-end: pronouns;
+}
+
+section#health {
+  grid-template-columns: [left] 2rem auto min-content [right];
+}
+label[for=hp] {
+  grid-column-start: left;
+  grid-column-end: right;
+}
+
+section#rolling {
+  grid-template-columns: [left] min-content [outcome] auto [buttons] max-content [right];
+}
+input#roll {
+  grid-column-start: left;
+  grid-column-end: buttons;
+}
+
+section#stats {
+  grid-template-columns: [left] auto auto auto [right];
+}
+
+section#types {
+  grid-template-columns: [left] auto auto auto auto auto auto [right];
+}
+
+section#saveload {
+  grid-template-columns: [left] max-content max-content auto [right];
+}
