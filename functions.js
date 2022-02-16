@@ -152,6 +152,8 @@ function setJSON(inStr) {
       emt.value = inDict[emt.id];
     }
   }
+  // Set page title
+  document.title = inDict["name"]
 }
 
 function load() {
