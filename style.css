@@ -139,6 +139,9 @@ hr {
 #typora-source .CodeMirror-line {
   border-bottom: 0.5mm solid white !important;
 }
+mark-down blockquote:before {
+  right: 100%;
+}
 
 
 /** Responsivity **/
