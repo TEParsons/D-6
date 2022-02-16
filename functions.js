@@ -103,7 +103,7 @@ function updateStats() {
 function getJSON() {
   let outDict = {};
   // Get values
-  for (let emt of document.getElementById("sheet").elements) {
+  for (let emt of document.getElementById("write").elements) {
     // markdown object isn't recognised by form, so alias it with its editor
     if (emt === document.getElementById("background").editor) {
       emt = document.getElementById("background");
@@ -139,7 +139,7 @@ function save() {
 function setJSON(inStr) {
   let inDict = JSON.parse(inStr)
   // Restore values
-  for (let emt of document.getElementById("sheet").elements) {
+  for (let emt of document.getElementById("write").elements) {
     // markdown object isn't recognised by form, so alias it with its editor
     if (emt === document.getElementById("background").editor) {
       emt = document.getElementById("background");
