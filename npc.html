@@ -1,0 +1,80 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.0/markdown-it.min.js"></script>
+    <script src="markdown.js"></script>
+    <script src="functions.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<form id=sheet>
+    <section id=basics>
+        <label for=lvl>Level</label>
+
+        <input id=lvl type=number value=1 min=1 onchange=updateStats() data-saveload></input>
+
+        <input id=name placeholder="Name..." data-saveload></input>
+
+        <select id=pronouns onchange="this.style.color='black'" data-saveload>
+            <option value="" selected disabled hidden>Pronouns...</option>
+            <option value=m>he/him</option>
+            <option value=nb>they/them</option>
+            <option value=f>she/her</option>
+            <option value=ns>it/its</option>
+            <option value=oth>other</option>
+        </select>
+        <input id=species placeholder="Species..." data-saveload></input>
+        <select id=align onchange="this.style.color='black'" data-saveload>
+            <option value="" selected disabled hidden>Alignment...</option>
+            <option value=lg>Lawful Good</option>
+            <option value=ng>Neutral Good</option>
+            <option value=cg>Chaotic Good</option>
+            <option value=ln>Lawful Neutral</option>
+            <option value=nn>True Neutral</option>
+            <option value=cn>Chaotic Neutral</option>
+            <option value=le>Lawful Evil</option>
+            <option value=ne>Neutral Evil</option>
+            <option value=ce>Chaotic Evil</option>
+        </select>
+    </section>
+
+    <section id=health>
+        <input type=button id=rest alt=rest value=☾ onclick=doRest()></input>
+        <input id=hp type=number value=0 data-saveload></input>
+        <output id=max-hp>10</output>
+    </section>
+
+    <section id=stats>
+        <label for=str>Str</label>
+        <label for=def>Def</label>
+        <label for=agl>Agl</label>
+
+        <input id=str type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+        <input id=def type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+        <input id=agl type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+
+        <label for=kno>Kno</label>
+        <label for=cun>Cun</label>
+        <label for=chr>Chr</label>
+
+        <input id=kno type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+        <input id=cun type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+        <input id=chr type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+    </section>
+
+    <mark-down id=abilities data-saveload></mark-down>
+
+    <h1>Background</h1>
+    <mark-down id=background data-saveload></mark-down>
+
+    <section id=saveload>
+        <input type=button value="Load" onclick=load()></input>
+        <input type="file" id=loadbuffer style="display:none"></input>
+        <input type=button value="Save" onclick=save()></input>
+        <a id=savebuffer style="display:none"></a>
+    </section>
+
+</form>
+
+<footer>
+    <script src="script.js"></script>
+</footer>

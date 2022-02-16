@@ -59,8 +59,10 @@ function updateMaxHp() {
 }
 
 function updateLvl() {
-  let exp = parseInt(document.getElementById("exp").value);
-  document.getElementById("lvl").value = Math.floor(Math.log(exp / 6 + 1)) + 1;
+  if (document.getElementById("exp")) {
+    let exp = parseInt(document.getElementById("exp").value);
+    document.getElementById("lvl").value = Math.floor(Math.log(exp / 6 + 1)) + 1;
+  }
   // Update health
   updateMaxHp();
   // Update scores
@@ -124,7 +126,13 @@ function save() {
   // Save to file
   let file = new Blob([JSON.stringify(outDict)], { type: "application/json" });
   savebuffer.href = URL.createObjectURL(file);
-  savebuffer.download = [outDict["name"], outDict["exp"]].join("_") + "xp.json";
+  if (outDict["exp"]) {
+    // Save exp for PC
+    savebuffer.download = [outDict["name"], outDict["exp"]].join("_") + "xp.json";
+  } else {
+    // Save just name for NPC
+    savebuffer.download = outDict["name"] + ".json";
+  }
   savebuffer.click();
 }
 
