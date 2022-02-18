@@ -67,7 +67,9 @@ class MarkdownElement extends HTMLElement {
       this.postrender = func;
     } else {
       this.postrender = function(raw) {return raw}
-      console.log(`Function ${this.dataset.postrender} not found, will use default postrender.`)
+      if (this.dataset.postrender) {
+        console.log(`Function ${this.dataset.postrender} not found, will use default postrender.`)
+      }
     }
     // Render initial markdown
     this.render();
