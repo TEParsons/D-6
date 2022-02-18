@@ -61,16 +61,30 @@ class MarkdownElement extends HTMLElement {
       this.toggle.mode = "edit";
       this.toggle.textContent = "👁";
     }
+    // Link to settable post-render function
+    let func = window[this.dataset.postrender];
+    if (func) {
+      this.postrender = func;
+    } else {
+      this.postrender = function(raw) {return raw}
+      console.log(`Function ${this.dataset.postrender} not found, will use default postrender.`)
+    }
     // Render initial markdown
-    this.viewer.innerHTML = md.render(this.editor.value);
+    this.render();
   }
+
+  render() {
+     let firstpass = md.render(this.editor.value);
+     this.viewer.innerHTML = this.postrender(firstpass);
+  }
+
   // Alias MarkdownElement value with the value of its editor
   get value() {
     return this.editor.value
   }
   set value(val) {
     this.editor.value = val
-    this.viewer.innerHTML = md.render(val);
+    this.render();
   }
 }
 customElements.define("mark-down", MarkdownElement);
@@ -94,7 +108,7 @@ function toggleMarkdownMode(evt) {
   }
   if (button.mode === "view") {
     // Render markdown
-    button.parent.viewer.innerHTML = md.render(button.parent.editor.value);
+    button.parent.render()
     // If mode is view, hide editor and show viewer
     button.parent.viewer.hidden = false;
     button.parent.editor.hidden = true;
