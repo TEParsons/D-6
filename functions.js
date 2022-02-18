@@ -179,3 +179,31 @@ function load() {
   // Click to trigger previously defined functions
   loadbuffer.click();
 }
+
+function custommd(raw) {
+  // Find all relative values in contents
+  let re = /\[\d*\]\{\w*\}d?/g;
+  let matches = raw.match(re);
+  if (matches) {
+    // For each match...
+    for (let rel of matches) {
+      // Get number and stat from match
+      let num = parseInt(rel.match(/(?<=\[)\d*(?=\])/g)[0]);
+      let stat = rel.match(/(?<=\{)\w*(?=\})/g)[0].toLowerCase();
+      let statVal = parseInt(document.getElementById(stat).value);
+      // If there's a d on the end, make sure it goes after the value, not the context
+      let _d;
+      if (rel.toLowerCase().endsWith("d")) {
+        _d = "d"
+      } else {
+        _d = ""
+      }
+      // Construct HTML output
+      let html = `<span class=relval>${statVal * num}${_d} <span class=relval-context>(${num} x ${stat})</span></span>`
+      // Replace matched string with parsed html
+      raw = raw.replace(rel, html)
+    };
+  }
+  // Return processed output
+  return raw;
+}
