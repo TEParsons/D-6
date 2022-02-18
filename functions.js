@@ -111,6 +111,9 @@ function getJSON() {
     if (emt === document.getElementById("abilities").editor) {
       emt = document.getElementById("abilities");
     }
+    if (emt === document.getElementById("inventory").editor) {
+      emt = document.getElementById("inventory");
+    }
     if (emt.dataset.saveload !== undefined) {
       // Only add relevant values to outDict
       outDict[emt.id] = emt.value;
@@ -146,6 +149,9 @@ function setJSON(inStr) {
     }
     if (emt === document.getElementById("abilities").editor) {
       emt = document.getElementById("abilities");
+    }
+    if (emt === document.getElementById("inventory").editor) {
+      emt = document.getElementById("inventory");
     }
     // Only use relevant values from inDict
     if (emt.id in inDict) {
