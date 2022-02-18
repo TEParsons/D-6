@@ -336,7 +336,7 @@ input[type=radio] {
 mark-down {
   position: relative;
   box-sizing: border-box;
-  min-height: 20rem;
+  min-height: 50rem;
 }
 mark-down .md-viewer, mark-down .md-editor {
   background-color: white;
