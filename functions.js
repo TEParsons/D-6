@@ -7,6 +7,20 @@ const dicemap = {
   5: "⚄",
   6: "⚅"
 };
+const elementColors = {
+  blunt: ["#ab371d", "white"],
+  sharp: ["#b5b5c5", "black"],
+  psychic: ["#c92cbc", "white"],
+  poison: ["#670778", "white"],
+  fire: ["#f5531d", "white"],
+  light: ["#ffffec", "black"],
+  air: ["#aab0f0", "black"],
+  electric: ["#fff928", "black"],
+  water: ["#2e3ef0", "white"],
+  ice: ["#97d6e8", "black"],
+  earth: ["#7a6c54", "white"],
+  plant: ["#31b535", "white"]
+};
 
 function doRest() {
   document.getElementById("hp").value = parseInt(
@@ -181,9 +195,11 @@ function load() {
 }
 
 function custommd(raw) {
+  let re;
+  let matches;
   // Find all relative values in contents
-  let re = /\[\d*\]\{\w*\}d?/g;
-  let matches = raw.match(re);
+  re = /\[\d*\]\{\w*\}d?/g;
+  matches = raw.match(re);
   if (matches) {
     // For each match...
     for (let rel of matches) {
@@ -203,6 +219,28 @@ function custommd(raw) {
       // Replace matched string with parsed html
       raw = raw.replace(rel, html)
     };
+  }
+
+  // Find all type labels
+  re = /\[\[\w*\]\]/g
+  matches = raw.match(re);
+  if (matches) {
+    // For each match...
+    for (let lbl of matches) {
+      // Get inner contents
+      type = lbl.match(/(?<=\[\[)\w*(?=\]\])/g)[0];
+      // Define colors
+      let colStr
+      if (Object.keys(elementColors).includes(type)) {
+        colStr = ` style="color: ${elementColors[type][1]}; background-color:${elementColors[type][0]}"`
+      } else {
+        colStr = ""
+      }
+      // Construct HTML output
+      let html = `<span class=typelbl${colStr}>${type}</span>`;
+      // Replace matched string with parsed html
+      raw = raw.replace(lbl, html);
+    }
   }
   // Return processed output
   return raw;
