@@ -1,0 +1,57 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.0/markdown-it.min.js"></script>
+    <script src="markdown.js"></script>
+    <script src="functions.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Markdown Reader</title>
+</head>
+
+<form id=write>
+    <details id=instr>
+        <summary>Instructions</summary>
+        <h2>How To Use</h2>
+        <p>Throughout the campaign you'll be given text resources with certain custom markers, for example:</p>
+        <code>[1]{lvl}</code>
+        <p>In your character sheet, these are converted to an easy to read value based on your stats. For example, if you were lvl 3, the example above would be:</p>
+        <code>3 (1 x lvl)</code>
+        <p>You can use this page to put in whatever values you like for stats and preview the text. This is useful if given a big list of items which you can only take one of - copy your stats here and copy the item over to see it rendered!</p>
+        <hr>
+    </details>
+
+    <section id=basics>
+        <label for=lvl>Level</label>
+        <input id=lvl type=number value=1 min=1></input>
+    </section>
+
+    <section id=stats>
+        <label for=str>Str</label>
+        <label for=def>Def</label>
+        <label for=agl>Agl</label>
+
+        <input id=str type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+        <input id=def type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+        <input id=agl type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+
+        <label for=kno>Kno</label>
+        <label for=cun>Cun</label>
+        <label for=chr>Chr</label>
+
+        <input id=kno type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+        <input id=cun type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+        <input id=chr type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+    </section>
+
+    <section id=health>
+        <input type=button id=rest alt=rest value=☾ onclick=doRest()></input>
+        <input id=hp type=number value=0 data-saveload></input>
+        <output id=max-hp>10</output>
+    </section>
+
+    <mark-down id=inventory data-postrender=custommd data-saveload></mark-down>
+
+</form>
+
+<footer>
+    <script src="script.js"></script>
+</footer>
