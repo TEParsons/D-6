@@ -353,6 +353,13 @@ mark-down .md-toggle {
 margin-top: 0;
 margin-block-start: 0;
 }
+mark-down .relval {
+  font-weight: 600;
+}
+mark-down .relval-context {
+  font-weight: 400;
+  font-style: italic;
+}
 
 label, output {
   text-align: center;
