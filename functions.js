@@ -219,7 +219,7 @@ function custommd(raw) {
     };
   }
 
-  // Find all type labels
+  // Find all type / stat labels
   re = /\[\[\w*\]\]/g
   matches = raw.match(re);
   if (matches) {
@@ -228,14 +228,20 @@ function custommd(raw) {
       // Get inner contents
       type = lbl.match(/(?<=\[\[)\w*(?=\]\])/g)[0];
       // Define colors
-      let colStr
+      let cls
+      let style
       if (Object.keys(elementColors).includes(type)) {
-        colStr = ` style="color: ${elementColors[type][1]}; background-color:${elementColors[type][0]}"`
+        cls = "typelbl";
+        style = ` style="color: ${elementColors[type][1]}; background-color:${elementColors[type][0]}"`;
+      } else if (["Str", "Def", "Agl", "Kno", "Cun", "Chr"].includes(type)) {
+        cls = "statlbl";
+        style = "";
       } else {
-        colStr = ""
+        cls = "otherlbl";
+        style = "";
       }
       // Construct HTML output
-      let html = `<span class=typelbl${colStr}>${type}</span>`;
+      let html = `<span class=${cls}${style}>${type}</span>`;
       // Replace matched string with parsed html
       raw = raw.replace(lbl, html);
     }
