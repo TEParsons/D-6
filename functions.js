@@ -198,24 +198,22 @@ function custommd(raw) {
   let re;
   let matches;
   // Find all relative values in contents
-  re = /\[\d*\]\{\w*\}d?/g;
+  re = /\[[\d\/\.]*\]\{\w*\}\w*/g;
   matches = raw.match(re);
   if (matches) {
     // For each match...
     for (let rel of matches) {
-      // Get number and stat from match
-      let num = parseInt(rel.match(/(?<=\[)\d*(?=\])/g)[0]);
-      let stat = rel.match(/(?<=\{)\w*(?=\})/g)[0].toLowerCase();
-      let statVal = parseInt(document.getElementById(stat).value);
-      // If there's a d on the end, make sure it goes after the value, not the context
-      let _d;
-      if (rel.toLowerCase().endsWith("d")) {
-        _d = "d"
-      } else {
-        _d = ""
-      }
+      // Get parameters
+      let params = {}
+      params['qty'] = rel.match(/(?<=\[).*(?=\])/g)[0];  // Value between [ and ] is the quantity
+      params['stat'] = rel.match(/(?<=\{)\w*(?=\})/g)[0].toLowerCase();  // Value between { and } is the relevant stat name
+      params['units'] = rel.match(/(?<=\})\w*/g)[0];  // Value after } is the units
+      // Calculate value
+      let val = parseInt(document.getElementById(params['stat']).value);  // Value of relevant stat
+      val *= parseNum(params['qty']);  // Multiply by quantity
+      val = Math.round(val);  // Round
       // Construct HTML output
-      let html = `<span class=relval>${statVal * num}${_d} <span class=relval-context>(${num} x ${stat})</span></span>`
+      let html = `<span class=relval>${val}${params['units']} <span class=relval-context>(${params['qty']} x ${params['stat']})</span></span>`
       // Replace matched string with parsed html
       raw = raw.replace(rel, html)
     };
@@ -244,4 +242,27 @@ function custommd(raw) {
   }
   // Return processed output
   return raw;
+}
+
+function parseNum(numStr) {
+  // If contains a /, treat as a fraction
+  if (numStr.includes("/")) {
+    // Get numerator and denominator
+    let numer = parseInt(numStr.split("/")[0]);
+    let denom = parseInt(numStr.split("/")[1]);
+    // Calculate value
+    return numer / denom;
+  }
+
+  // If contains a ., treat as decimal
+  else if (numStr.includes(".")) {
+    // Use parseFloat
+    return parseFloat(numStr)
+  }
+
+  // Otherwise, treat as int
+  else {
+    // Use parseInt
+    return parseInt(numStr)
+  }
 }
