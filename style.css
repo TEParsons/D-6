@@ -299,6 +299,21 @@ blockquote:before {
     top: -5mm;
 }
 
+/** Floating **/
+.nanval:after {
+  content: "This value will be calculated according to the values indicated in the following brackets.";
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid var(--offwhite);
+  padding: 2mm 4mm;
+  border-radius: 1mm;
+  font-weight: 400;
+}
+.nanval:hover:after {
+  display: block;
+}
+
 
 /** Interface **/
 
@@ -383,6 +398,10 @@ label, output {
 }
 span.typelbl {
   padding: 0mm 2mm;
+}
+
+.nanval {
+  background-color: #e2e2e2;
 }
 
 img {

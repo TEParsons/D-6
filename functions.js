@@ -212,6 +212,9 @@ function custommd(raw) {
       let val = parseInt(document.getElementById(params['stat']).value);  // Value of relevant stat
       val *= parseNum(params['qty']);  // Multiply by quantity
       val = Math.round(val);  // Round
+      if (isNaN(val)) {
+        val = "<span class=nanval>?</span>";  // Substitute NaN with a nanval element
+      }
       // Construct HTML output
       let html = `<span class=relval>${val}${params['units']} <span class=relval-context>(${params['qty']} x ${params['stat']})</span></span>`
       // Replace matched string with parsed html
