@@ -381,6 +381,9 @@ label, output {
   background-color: grey;
   color: white;
 }
+span.typelbl {
+  padding: 0mm 2mm;
+}
 
 img {
   max-width: 100%;
