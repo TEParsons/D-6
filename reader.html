@@ -37,7 +37,14 @@
         <output id=max-hp>10</output>
     </section>
 
-    <mark-down id=inventory data-postrender=custommd data-saveload></mark-down>
+    <mark-down id=preview data-postrender=custommd data-saveload style="min-height: 100%"></mark-down>
+
+    <section id=saveload>
+        <input type=button value="Load" onclick=loadmd(preview)></input>
+        <input type="file" id=loadbuffer style="display:none"></input>
+        <input type=button value="Save" onclick=savemd(preview)></input>
+        <a id=savebuffer style="display:none"></a>
+    </section>
 
 </form>
 

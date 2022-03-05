@@ -153,6 +153,17 @@ function save() {
   savebuffer.click();
 }
 
+function savemd(target) {
+  // Get markdown
+  let value = target.value;
+  // Save to file
+  let file = new Blob([value], { type: "text/markdown" });
+  savebuffer.href = URL.createObjectURL(file);
+  // Save
+  savebuffer.download = "edited.md";
+  savebuffer.click();
+}
+
 function setJSON(inStr) {
   let inDict = JSON.parse(inStr)
   // Restore values
@@ -192,6 +203,20 @@ function load() {
   });
   // Click to trigger previously defined functions
   loadbuffer.click();
+}
+
+function loadmd(target) {
+    // Load the .md file to a string
+    var reader = new FileReader();
+    loadbuffer.onchange = function () {
+      reader.readAsText(loadbuffer.files[0]);
+    };
+    // Set value of target
+    reader.addEventListener("loadend", function () {
+      target.value = reader.result;
+    });
+    // Click to trigger previously defined functions
+    loadbuffer.click();
 }
 
 function custommd(raw) {
