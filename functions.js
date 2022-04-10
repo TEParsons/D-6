@@ -66,7 +66,7 @@ function updateMaxHp() {
   let def = parseInt(document.getElementById("def").value);
   let lvl = parseInt(document.getElementById("lvl").value);
   // Calculate max hp
-  let maxhp = Math.floor(lvl * 6 + def);
+  let maxhp = Math.floor(lvl * 6 + def * 2);
   document.getElementById("max-hp").value = document.getElementById(
     "hp"
   ).max = maxhp;
@@ -94,7 +94,7 @@ function updateStats() {
     document.getElementById("chr")
   ];
   // How many points can they spend?
-  let points = parseInt(document.getElementById("lvl").value) * 6 * 6;
+  let points = parseInt(document.getElementById("lvl").value) * 6 * 3;
   // How many points have they spent?
   let spent = 0;
   for (let ctrl of ctrls) {
