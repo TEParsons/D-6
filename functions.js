@@ -119,6 +119,25 @@ function updateStats() {
   updateMaxHp();
 }
 
+function updateCurrency() {
+  // Get controls for each currency unit
+  let goldCtrl = document.getElementById("gold");
+  let silverCtrl = document.getElementById("silver");
+  let copperCtrl = document.getElementById("copper");
+  // Convert to smallest unit
+  let c = parseNum(goldCtrl.value) * 36 + parseNum(silverCtrl.value) * 6 + parseNum(copperCtrl.value);
+  // Get gold
+  let g = Math.floor(c / 36)
+  goldCtrl.value = g
+  c -= g * 36
+  // Get silver
+  let s = Math.floor(c / 6)
+  silverCtrl.value = s
+  c -= s * 6
+  // Get copper
+  copperCtrl.value = c
+}
+
 function getJSON() {
   let outDict = {};
   // Get values
@@ -205,6 +224,7 @@ function load() {
     updateLvl();
     updateStats();
     updateMaxHp();
+    updateCurrency();
   });
   // Click to trigger previously defined functions
   loadbuffer.click();

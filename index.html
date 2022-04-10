@@ -205,11 +205,11 @@
     <mark-down id=inventory data-postrender=custommd data-saveload></mark-down>
     <section id=currency>
         <label for="gold">🥇<sup style="font-size: 0.75em">💰</sup></label>
-        <input id=gold type="number" data-saveload></input>
+        <input id=gold type="number" value=0 onchange=updateCurrency() data-saveload></input>
         <label for="silver">🥈<sup style="font-size: 0.75em">💰</sup></label>
-        <input id=silver type="number" data-saveload></input>
+        <input id=silver type="number" value=0 onchange=updateCurrency() data-saveload></input>
         <label for="copper">🥉<sup style="font-size: 0.75em">💰</sup></label>
-        <input id=copper type="number" data-saveload></input>
+        <input id=copper type="number" value=0 onchange=updateCurrency() data-saveload></input>
     </section>
 
 
