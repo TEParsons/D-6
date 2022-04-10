@@ -284,7 +284,7 @@ function custommd(raw) {
       } else if (["Str", "Def", "Agl", "Kno", "Cun", "Chr"].includes(content)) {
         cls = "statlbl";
         style = "";
-      } else if (content.match(/\d*[gsc]/g)) {
+      } else if (content.match(/^\d*[gsc]$/g)) {
         content = content.replace("g", "🥇");
         content = content.replace("s", "🥈");
         content = content.replace("c", "🥉");
