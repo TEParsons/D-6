@@ -400,6 +400,11 @@ span.typelbl {
   padding: 0mm 2mm;
 }
 
+.moneylbl {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
 .nanval {
   background-color: #e2e2e2;
 }

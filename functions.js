@@ -21,11 +21,6 @@ const elementColors = {
   earth: ["#7a6c54", "white"],
   plant: ["#31b535", "white"]
 };
-const currencyLbls = {
-  g: "🥇",
-  s: "🥈",
-  c: "🥉",
-}
 
 function doRest() {
   document.getElementById("hp").value = parseInt(
@@ -289,8 +284,10 @@ function custommd(raw) {
       } else if (["Str", "Def", "Agl", "Kno", "Cun", "Chr"].includes(content)) {
         cls = "statlbl";
         style = "";
-      } else if (["g", "s", "c"].includes(content)) {
-        content = currencyLbls[content];
+      } else if (content.match(/\d*[gsc]/g)) {
+        content = content.replace("g", "🥇");
+        content = content.replace("s", "🥈");
+        content = content.replace("c", "🥉");
         cls = "moneylbl";
         style = "";
       } else {
