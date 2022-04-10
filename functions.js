@@ -21,6 +21,11 @@ const elementColors = {
   earth: ["#7a6c54", "white"],
   plant: ["#31b535", "white"]
 };
+const currencyLbls = {
+  g: "🥇",
+  s: "🥈",
+  c: "🥉",
+}
 
 function doRest() {
   document.getElementById("hp").value = parseInt(
@@ -247,29 +252,33 @@ function custommd(raw) {
     };
   }
 
-  // Find all type / stat labels
+  // Find all type / stat / currency labels
   re = /\[\[\w*\]\]/g
   matches = raw.match(re);
   if (matches) {
     // For each match...
     for (let lbl of matches) {
       // Get inner contents
-      type = lbl.match(/(?<=\[\[)\w*(?=\]\])/g)[0];
+      content = lbl.match(/(?<=\[\[)\w*(?=\]\])/g)[0];
       // Define colors
       let cls
       let style
-      if (Object.keys(elementColors).includes(type)) {
+      if (Object.keys(elementColors).includes(content)) {
         cls = "typelbl";
-        style = ` style="color: ${elementColors[type][1]}; background-color:${elementColors[type][0]}"`;
-      } else if (["Str", "Def", "Agl", "Kno", "Cun", "Chr"].includes(type)) {
+        style = ` style="color: ${elementColors[content][1]}; background-color:${elementColors[content][0]}"`;
+      } else if (["Str", "Def", "Agl", "Kno", "Cun", "Chr"].includes(content)) {
         cls = "statlbl";
+        style = "";
+      } else if (["g", "s", "c"].includes(content)) {
+        content = currencyLbls[content];
+        cls = "moneylbl";
         style = "";
       } else {
         cls = "otherlbl";
         style = "";
       }
       // Construct HTML output
-      let html = `<span class=${cls}${style}>${type}</span>`;
+      let html = `<span class=${cls}${style}>${content}</span>`;
       // Replace matched string with parsed html
       raw = raw.replace(lbl, html);
     }

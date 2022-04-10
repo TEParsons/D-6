@@ -525,6 +525,12 @@ section#types {
   grid-template-columns: [left] auto auto auto auto auto auto [right];
 }
 
+section#currency {
+  grid-template-columns: [left] 3em auto 3em auto 3em auto [right];
+  padding-right: 2cm;
+  margin-top: 5mm;
+}
+
 section#saveload {
   grid-template-columns: [left] max-content max-content auto [right];
 }
