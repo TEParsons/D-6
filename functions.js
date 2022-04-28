@@ -112,6 +112,17 @@ function updateStats() {
   }
   // Update max hp
   updateMaxHp();
+  // Update action stats
+  updateActionStats();
+}
+
+function updateActionStats() {
+    // Calculate movement per turn
+    let mvmt = document.getElementById("movement");
+    mvmt.value = 24 + parseInt(document.getElementById("agl").value);
+    // Calculate actions per turn
+    let nact = document.getElementById("nactions");
+    nact.value = 1 + Math.floor(parseInt(document.getElementById("lvl").value) / 3)
 }
 
 function updateCurrency() {

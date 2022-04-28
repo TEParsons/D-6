@@ -229,6 +229,23 @@ code, .cm-comment {
   font-family: var(--mono);
 }
 
+tooltip {
+    display: none;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 0.25em;
+    padding: 0.5em;
+    z-index: 10;
+    box-shadow: 1mm 1mm 2mm rgba(0, 0, 0, 0.2)
+}
+
+label:hover > tooltip {
+    display: block;
+}
+
 /* Block */
 p {
   box-sizing: border-box;
@@ -377,6 +394,7 @@ mark-down .relval-context {
 }
 
 label, output {
+  position: relative;
   text-align: center;
   font-size: 1.5rem;
 }
@@ -530,10 +548,20 @@ section#types {
   grid-template-columns: [left] auto auto auto auto auto auto [right];
 }
 
+section#actions {
+  grid-auto-flow: column;
+  justify-content: start;
+  padding-right: 2cm;
+  margin-bottom: 5mm;
+}
+section#actions output {
+    margin-right: 5mm;
+}
+
 section#currency {
   grid-template-columns: [left] 3em auto 3em auto 3em auto [right];
   padding-right: 2cm;
-  margin-top: 5mm;
+  margin-bottom: 5mm;
 }
 
 section#saveload {

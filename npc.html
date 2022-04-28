@@ -61,9 +61,30 @@
         <input id=chr type=number value=0 min=0 onchange=updateStats() data-saveload></input>
     </section>
 
+    <h1>Abilities</h1>
+    <section id=actions>
+        <label for=movement>
+            <tooltip>Movement per turn</tooltip>
+            👟
+        </label>
+        <output id=movement>30</output>
+        <label for=nactions>
+            🌟
+            <tooltip>Actions per turn</tooltip>
+        </label>
+        <output id=nactions>1</output>
+    </section>
     <mark-down id=abilities data-postrender=custommd data-saveload></mark-down>
 
     <h1>Inventory</h1>
+    <section id=currency>
+        <label for="gold">🥇<sup style="font-size: 0.75em">💰</sup></label>
+        <input id=gold type="number" value=0 onchange=updateCurrency() data-saveload></input>
+        <label for="silver">🥈<sup style="font-size: 0.75em">💰</sup></label>
+        <input id=silver type="number" value=0 onchange=updateCurrency() data-saveload></input>
+        <label for="copper">🥉<sup style="font-size: 0.75em">💰</sup></label>
+        <input id=copper type="number" value=0 onchange=updateCurrency() data-saveload></input>
+    </section>
     <mark-down id=inventory data-postrender=custommd data-saveload></mark-down>
 
     <h1>Background</h1>
