@@ -26,7 +26,7 @@ body, .typora-export-content {
   right: 0;
   bottom: 0;
   overflow-y: scroll;
-  background-image: url("https://teparsons.github.io/Krafty/typora/krafty/krafty-bg.jpeg");
+  background-image: url("https://teparsons.github.io/Krafty/docs/krafty/krafty-bg.jpeg");
   background-size: cover;
   background-attachment: fixed;
   z-index: -2;
@@ -73,7 +73,7 @@ body:after, .typora-export-content:after {
   width: 3cm;
 
   content: "";
-  background-image: url("https://teparsons.github.io/Krafty/typora/krafty/binding.svg");
+  background-image: url("https://teparsons.github.io/Krafty/docs/krafty/binding.svg");
   background-size: cover;
   background-repeat: repeat;
   transform: translateZ(1px);
