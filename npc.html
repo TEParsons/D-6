@@ -8,7 +8,10 @@
 
 <form id=write>
     <section id=basics>
-        <label for=lvl>Level</label>
+        <label for=lvl>
+            <tooltip>Level</tooltip>
+            🏆
+        </label>
 
         <input id=lvl type=number value=1 min=1 onchange=updateStats() data-saveload></input>
 
@@ -46,15 +49,15 @@
     <section id=stats>
         <label for=str>
             <tooltip>Strength</tooltip>
-            Str 💪
+            <span class="premoji">💪</span> Str
         </label>
         <label for=def>
             <tooltip>Defence</tooltip>
-            Def 🛡️
+            <span class="premoji">🛡️</span> Def
         </label>
         <label for=agl>
             <tooltip>Agility</tooltip>
-            Agl 🪶
+            <span class="premoji">🪶</span> Agl
         </label>
 
         <input id=str type=number value=0 min=0 onchange=updateStats() data-saveload></input>
@@ -63,15 +66,15 @@
 
         <label for=kno>
             <tooltip>Knowledge</tooltip>
-            Kno 📖
+            <span class="premoji">📖</span> Kno
         </label>
         <label for=cun>
             <tooltip>Cunning</tooltip>
-            Cun 🕵️
+            <span class="premoji">🕵️</span> Cun
         </label>
         <label for=chr>
             <tooltip>Charm</tooltip>
-            Chr 👏
+            <span class="premoji">👏</span> Chr
         </label>
 
         <input id=kno type=number value=0 min=0 onchange=updateStats() data-saveload></input>
@@ -81,16 +84,16 @@
 
     <h1>Abilities</h1>
     <section id=actions>
-        <label for=movement>
+        <label for=mvt>
             <tooltip>Movement per turn</tooltip>
             👟
         </label>
-        <output id=movement>30</output>
-        <label for=nactions>
+        <output id=mvt>30</output>
+        <label for=act>
             🌟
             <tooltip>Actions per turn</tooltip>
         </label>
-        <output id=nactions>1</output>
+        <output id=act>1</output>
     </section>
     <mark-down id=abilities data-postrender=custommd data-saveload></mark-down>
 

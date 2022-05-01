@@ -21,6 +21,27 @@ const elementColors = {
   earth: ["#7a6c54", "white"],
   plant: ["#31b535", "white"]
 };
+const statEmojis = {
+    "lvl": "🏆",
+    "str": "💪",
+    "def": "🛡️",
+    "agl": "🪶",
+    "kno": "📖",
+    "cun": "🕵️",
+    "chr": "👏",
+    "mvt": "👟",
+    "act": "🌟"
+}
+
+/** Basic Utility **/
+
+function toTitleCase(content) {
+    // Convert string to title case
+    return content.charAt(0).toUpperCase() + content.substr(1).toLowerCase()
+}
+
+
+/** Specific Functions **/
 
 function doRest() {
   document.getElementById("hp").value = parseInt(
@@ -264,6 +285,10 @@ function custommd(raw) {
       params['qty'] = rel.match(/(?<=\[).*(?=\])/g)[0];  // Value between [ and ] is the quantity
       params['stat'] = rel.match(/(?<=\{)\w*(?=\})/g)[0].toLowerCase();  // Value between { and } is the relevant stat name
       params['units'] = rel.match(/(?<=\})\w*/g)[0];  // Value after } is the units
+      // Stylise stat
+      if (Object.keys(statEmojis).includes(params['stat'])) {
+        params['statlbl'] = `<span class=premoji>${statEmojis[params['stat']]}</span>${toTitleCase(params['stat'])}`
+      }
       // Calculate value
       let val = parseInt(document.getElementById(params['stat']).value);  // Value of relevant stat
       val *= parseNum(params['qty']);  // Multiply by quantity
@@ -272,7 +297,7 @@ function custommd(raw) {
         val = "<span class=nanval>?</span>";  // Substitute NaN with a nanval element
       }
       // Construct HTML output
-      let html = `<span class=relval>${val}${params['units']} <span class=relval-context>(${params['qty']} x ${params['stat']})</span></span>`
+      let html = `<span class=relval>${val}${params['units']} <span class=relval-context>(${params['qty']} x ${params['statlbl']})</span></span>`
       // Replace matched string with parsed html
       raw = raw.replace(rel, html)
     };
@@ -289,19 +314,26 @@ function custommd(raw) {
       // Define colors
       let cls
       let style
-      if (Object.keys(elementColors).includes(content)) {
+      if (Object.keys(elementColors).includes(content.toLowerCase())) {
+        // Stylise type labels
         cls = "typelbl";
         style = ` style="color: ${elementColors[content][1]}; background-color:${elementColors[content][0]}"`;
-      } else if (["Str", "Def", "Agl", "Kno", "Cun", "Chr"].includes(content)) {
+      } else if (Object.keys(statEmojis).includes(content.toLowerCase())) {
+        // Append emoji to stat labels
+        content = `<span class=premoji>${statEmojis[content.toLowerCase()]}</span>${toTitleCase(content)}`
+        // Stylise stat labels
         cls = "statlbl";
-        style = "";
+        style = " style=font-weight:bold;";
       } else if (content.match(/^\d*[gsc]$/g)) {
+        // Substitute money labels for corresponding emoji
         content = content.replace("g", "🥇");
         content = content.replace("s", "🥈");
         content = content.replace("c", "🥉");
+        // Style money labels
         cls = "moneylbl";
         style = "";
       } else {
+        // Style other labels
         cls = "otherlbl";
         style = "";
       }
