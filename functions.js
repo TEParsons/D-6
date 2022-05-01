@@ -139,10 +139,10 @@ function updateStats() {
 
 function updateActionStats() {
     // Calculate movement per turn
-    let mvmt = document.getElementById("movement");
+    let mvmt = document.getElementById("mvt");
     mvmt.value = 24 + parseInt(document.getElementById("agl").value);
     // Calculate actions per turn
-    let nact = document.getElementById("nactions");
+    let nact = document.getElementById("act");
     nact.value = 1 + Math.floor(parseInt(document.getElementById("lvl").value) / 3)
 }
 
