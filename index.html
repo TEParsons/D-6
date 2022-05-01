@@ -71,17 +71,35 @@
 
     <h1>Rolling</h1>
     <section id=stats>
-        <label for=str>Str</label>
-        <label for=def>Def</label>
-        <label for=agl>Agl</label>
+        <label for=str>
+            <tooltip>Strength</tooltip>
+            Str 💪
+        </label>
+        <label for=def>
+            <tooltip>Defence</tooltip>
+            Def 🛡️
+        </label>
+        <label for=agl>
+            <tooltip>Agility</tooltip>
+            Agl 🪶
+        </label>
 
         <input id=str type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=def type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=agl type=number value=0 min=0 onchange=updateStats() data-saveload></input>
 
-        <label for=kno>Kno</label>
-        <label for=cun>Cun</label>
-        <label for=chr>Chr</label>
+        <label for=kno>
+            <tooltip>Knowledge</tooltip>
+            Kno 📖
+        </label>
+        <label for=cun>
+            <tooltip>Cunning</tooltip>
+            Cun 🕵️
+        </label>
+        <label for=chr>
+            <tooltip>Charm</tooltip>
+            Chr 👏
+        </label>
 
         <input id=kno type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=cun type=number value=0 min=0 onchange=updateStats() data-saveload></input>
