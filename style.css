@@ -549,6 +549,9 @@ input#roll {
 section#stats {
   grid-template-columns: [left] auto auto auto [right];
 }
+section#stats.compact {
+    grid-template-columns: [left] auto auto auto auto auto auto [right];
+}
 
 section#types {
   grid-template-columns: [left] auto auto auto auto auto auto [right];

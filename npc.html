@@ -46,37 +46,35 @@
         <output id=max-hp>10</output>
     </section>
 
-    <section id=stats>
+    <section class=compact id=stats>
         <label for=str>
-            <tooltip>Strength</tooltip>
-            <span class="premoji">💪</span> Str
+            <tooltip>Strength (Str)</tooltip>
+            <span class="premoji">💪</span>
         </label>
         <label for=def>
-            <tooltip>Defence</tooltip>
-            <span class="premoji">🛡️</span> Def
+            <tooltip>Defence (Def)</tooltip>
+            <span class="premoji">🛡️</span>
         </label>
         <label for=agl>
-            <tooltip>Agility</tooltip>
-            <span class="premoji">🪶</span> Agl
+            <tooltip>Agility (Agl)</tooltip>
+            <span class="premoji">🪶</span>
+        </label>
+        <label for=kno>
+            <tooltip>Knowledge (Kno)</tooltip>
+            <span class="premoji">📖</span>
+        </label>
+        <label for=cun>
+            <tooltip>Cunning (Cun)</tooltip>
+            <span class="premoji">🕵️</span>
+        </label>
+        <label for=chr>
+            <tooltip>Charm (Chr)</tooltip>
+            <span class="premoji">👏</span>
         </label>
 
         <input id=str type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=def type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=agl type=number value=0 min=0 onchange=updateStats() data-saveload></input>
-
-        <label for=kno>
-            <tooltip>Knowledge</tooltip>
-            <span class="premoji">📖</span> Kno
-        </label>
-        <label for=cun>
-            <tooltip>Cunning</tooltip>
-            <span class="premoji">🕵️</span> Cun
-        </label>
-        <label for=chr>
-            <tooltip>Charm</tooltip>
-            <span class="premoji">👏</span> Chr
-        </label>
-
         <input id=kno type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=cun type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=chr type=number value=0 min=0 onchange=updateStats() data-saveload></input>
