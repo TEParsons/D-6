@@ -191,7 +191,7 @@
         </label>
         <output id=act>1</output>
     </section>
-    <mark-down id=abilities data-postrender=custommd data-saveload></mark-down>
+    <mark-down id=abilities class=compact data-postrender=custommd data-saveload></mark-down>
 
     <h1>Inventory</h1>
     <section id=currency>
@@ -202,10 +202,10 @@
         <label for="copper">🥉<sup style="font-size: 0.75em">💰</sup></label>
         <input id=copper type="number" value=0 onchange=updateCurrency() data-saveload></input>
     </section>
-    <mark-down id=inventory data-postrender=custommd data-saveload></mark-down>
+    <mark-down id=inventory class=compact data-postrender=custommd data-saveload></mark-down>
 
     <h1>Background</h1>
-    <mark-down id=background data-postrender=custommd data-saveload></mark-down>
+    <mark-down id=background class=compact data-postrender=custommd data-saveload></mark-down>
 
     <section id=saveload>
         <input type=button value="Load" onclick=load()></input>

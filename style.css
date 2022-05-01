@@ -376,6 +376,9 @@ mark-down {
   box-sizing: border-box;
   min-height: 50rem;
 }
+mark-down.compact {
+    min-height: 20rem;
+}
 mark-down .md-viewer, mark-down .md-editor {
   background-color: white;
   padding: 2mm;
