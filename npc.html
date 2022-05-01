@@ -40,13 +40,7 @@
         </select>
     </section>
 
-    <section id=health>
-        <input type=button id=rest alt=rest value=☾ onclick=doRest()></input>
-        <input id=hp type=number value=0 data-saveload></input>
-        <output id=max-hp>10</output>
-    </section>
-
-    <section class=compact id=stats>
+        <section class=compact id=stats>
         <label for=str>
             <tooltip>Strength (Str)</tooltip>
             <span class="premoji">💪</span>
@@ -78,6 +72,112 @@
         <input id=kno type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=cun type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=chr type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+    </section>
+
+    <section id=health>
+        <input type=button id=rest alt=rest value=☾ onclick=doRest()></input>
+        <input id=hp type=number value=0 data-saveload></input>
+        <output id=max-hp>10</output>
+    </section>
+    <section class=compact id=types>
+        <label class=typelbl for=sharp>sharp</label>
+        <select id=sharp data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+        <label class=typelbl for=fire>fire</label>
+        <select id=fire data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+        <label class=typelbl for=water>water</label>
+        <select id=water data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+
+        <label class=typelbl for=earth>earth</label>
+        <select id=earth data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+
+        <label class=typelbl for=air>air</label>
+        <select id=air data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+
+        <label class=typelbl for=psychic>psychic</label>
+        <select id=psychic data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+        <label class=typelbl for=blunt>blunt</label>
+        <select id=blunt data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+        <label class=typelbl for=light>light</label>
+        <select id=light data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+        <label class=typelbl for=ice>ice</label>
+        <select id=ice data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+        <label class=typelbl for=plant>plant</label>
+        <select id=plant data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+        <label class=typelbl for=electric>electric</label>
+        <select id=electric data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
+
+        <label class=typelbl for=poison>poison</label>
+        <select id=poison data-saveload>
+            <option value=2>x2</option>
+            <option value=1 selected>x1</option>
+            <option value=0.5>x1/2</option>
+            <option value=0>x0</option>
+        </select>
     </section>
 
     <h1>Abilities</h1>

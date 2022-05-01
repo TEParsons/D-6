@@ -556,6 +556,9 @@ section#stats.compact {
 section#types {
   grid-template-columns: [left] auto auto auto auto auto auto [right];
 }
+section#types.compact {
+   grid-template-columns: [left] auto min-content auto min-content auto min-content auto min-content [right];
+}
 
 section#actions {
   grid-auto-flow: column;
