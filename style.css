@@ -577,5 +577,5 @@ section#currency {
 }
 
 section#saveload {
-  grid-template-columns: [left] max-content max-content auto [right];
+  grid-template-columns: [left] max-content max-content max-content auto [right];
 }

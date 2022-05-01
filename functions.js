@@ -31,6 +31,24 @@ const statEmojis = {
     "chr": "👏",
     "mvt": "👟",
     "act": "🌟"
+};
+const pronounMap = {
+    "f": "she/her",
+    "m": "he/him",
+    "nb": "they/them",
+    "ns": "it/its",
+    "oth": "other"
+};
+const alignMap = {
+    "lg": "Lawful Good",
+    "ng": "Neutral Good",
+    "cg": "Chaotic Good",
+    "ln": "Lawful Neutral",
+    "nn": "True Neutral",
+    "cn": "Chaotic Neutral",
+    "le": "Lawful Evil",
+    "ne": "Neutral Evil",
+    "ce": "Chaotic Evil"
 }
 
 /** Basic Utility **/
@@ -213,6 +231,178 @@ function savemd(target) {
   // Save
   savebuffer.download = "edited.md";
   savebuffer.click();
+}
+
+function exportmd() {
+    // Get stats
+    let outDict = getJSON();
+    // Establish minimum keys needed
+    let minkeys = [
+        "name", "lvl", "pronouns", "align",
+        "hp", "max-hp",
+        "str", "def", "agl", "kno", "cun", "chr",
+        "mvt", "act",
+        "sharp", "blunt", "fire", "light", "water", "ice", "earth", "plant", "electric", "psychic", "poison",
+        "abilities", "inventory", "background",
+        "gold", "silver", "copper"
+    ];
+    // Populate missing keys
+    for (key of minkeys) {
+        if (!Object.keys(outDict).includes(key)) {
+            let obj = document.getElementById(key);
+            if (obj) {
+                outDict[key] = obj.value
+            } else {
+                outDict[key] = "";
+            }
+        };
+    };
+    // Alias values
+    if (Object.keys(pronounMap).includes(outDict['pronouns'])) {
+        outDict['pronouns'] = pronounMap[outDict['pronouns']]
+    }
+    if (Object.keys(alignMap).includes(outDict['align'])) {
+        outDict['align'] = alignMap[outDict['align']]
+    }
+
+    /* Construct markdown string */
+    // Shorthand for a hr
+    let hr = `>
+> ---
+>
+`;
+    // Basics
+    let header = `> ### ${outDict['name']}
+>
+`
+    let subheader = `> *${outDict['pronouns']} | ${outDict['species']} | ${outDict['align']}*
+`;
+    let health = `> **Health** ${outDict['max-hp']}
+`;
+    let mvt = `> **Movement** ${outDict['mvt']}
+`;
+    let act = `> **Actions** ${outDict['act']}
+`;
+    // Money
+    let coinsList = []
+    if (outDict['gold']) {
+        coinsList.push(outDict['gold'] + "🥇")
+    }
+    if (outDict['silver']) {
+        coinsList.push(outDict['silver'] + "🥈")
+    }
+    if (outDict['copper']) {
+        coinsList.push(outDict['copper'] + "🥉")
+    }
+    let coinsStr
+    if (!coinsList.length) {
+        coinsStr = `Nothing`
+    } else {
+        coinsStr = coinsList.join(", ")
+    }
+    let drops = `> **Drops** ${coinsStr}
+`;
+
+    // Multipliers
+    let multisList = []
+    for (type of ["sharp", "blunt", "fire", "light", "water", "ice", "earth", "plant", "electric", "psychic", "poison"]) {
+        if (outDict[type] != 1) {
+            multisList.push(`\`${type}\` x${outDict[type]}`);
+        }
+    }
+    let multis
+    if (multisList.length) {
+        multis = multisList.join(", ")
+    } else {
+        multis = "None"
+    }
+    multis = `> **Multipliers** ${multis}
+`;
+    // Create stats table
+    let stats = `> | 💪 Str | 🛡️ Def  | 🪶 Agl  | 📖 Kno  | 🕵️ Cun  | 👏 Chr  |
+> | ---- | ---- | ---- | ---- | ---- | ---- |
+> | ${outDict['str']} | ${outDict['def']} | ${outDict['agl']} | ${outDict['kno']} | ${outDict['cun']} | ${outDict['chr']} |
+`;
+    // Abilities
+    let abilities = ``
+    if (outDict['abilities']) {
+        let sanit = ``
+        for (line of makeStandardMarkdown(outDict['abilities']).split("\n")) {
+            sanit += `> ${line}\n`
+        }
+        abilities = sanit
+    }
+    // Background
+    let background = `
+${makeStandardMarkdown(outDict['background'])}`
+
+    console.log(header + subheader + hr + health + mvt + act + multis + drops + hr + stats + hr + abilities + background)
+}
+
+function makeStandardMarkdown(raw) {
+  let re;
+  let matches;
+  // Find all relative values in contents
+  re = /\[[\d\/\.]*\]\{\w*\}\w*/g;
+  matches = raw.match(re);
+  if (matches) {
+    // For each match...
+    for (let rel of matches) {
+      // Get parameters
+      let params = {}
+      params['qty'] = rel.match(/(?<=\[).*(?=\])/g)[0];  // Value between [ and ] is the quantity
+      params['stat'] = rel.match(/(?<=\{)\w*(?=\})/g)[0].toLowerCase();  // Value between { and } is the relevant stat name
+      params['units'] = rel.match(/(?<=\})\w*/g)[0];  // Value after } is the units
+      // Stylise stat
+      if (Object.keys(statEmojis).includes(params['stat'])) {
+        params['statlbl'] = `**${statEmojis[params['stat']]}${toTitleCase(params['stat'])}**`
+      }
+      // Calculate value
+      let val = parseInt(document.getElementById(params['stat']).value);  // Value of relevant stat
+      val *= parseNum(params['qty']);  // Multiply by quantity
+      val = Math.round(val);  // Round
+      if (isNaN(val)) {
+        val = "`?`";  // Substitute NaN with a nanval element
+      }
+      // Construct HTML output
+      let html = `**${val}${params['units']}** *(${params['qty']} x ${params['statlbl']})*`
+      // Replace matched string with parsed html
+      raw = raw.replace(rel, html)
+    };
+  }
+
+  // Find all type / stat / currency labels
+  re = /\[\[\w*\]\]/g
+  matches = raw.match(re);
+  if (matches) {
+    // For each match...
+    for (let lbl of matches) {
+      // Get inner contents
+      content = lbl.match(/(?<=\[\[)\w*(?=\]\])/g)[0];
+      // Define colors
+      let cls
+      let style
+      if (Object.keys(elementColors).includes(content.toLowerCase())) {
+        // Stylise type labels
+        html = `\`${content}\``;
+      } else if (Object.keys(statEmojis).includes(content.toLowerCase())) {
+        // Append emoji to stat labels
+        html = `**${statEmojis[content.toLowerCase()]}${toTitleCase(content)}**`;
+      } else if (content.match(/^\d*[gsc]$/g)) {
+        // Substitute money labels for corresponding emoji
+        content = content.replace("g", "🥇");
+        content = content.replace("s", "🥈");
+        content = content.replace("c", "🥉");
+        html = content;
+      } else {
+        html = content;
+      }
+      // Replace matched string with parsed html
+      raw = raw.replace(lbl, html);
+    }
+  }
+  // Return processed output
+  return raw;
 }
 
 function setJSON(inStr) {
