@@ -248,9 +248,7 @@ label:hover > tooltip {
 }
 
 .premoji {
-    letter-spacing: -0.1em;
     line-height: 1em;
-    font-size: 0.8em;
 }
 
 /* Block */
