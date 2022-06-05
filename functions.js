@@ -32,6 +32,10 @@ const statEmojis = {
     "mvt": "👟",
     "act": "🌟"
 };
+const statAliases = {
+    "mvt": "movement",
+    "act": "actions"
+}
 const pronounMap = {
     "f": "she/her",
     "m": "he/him",
@@ -387,7 +391,11 @@ function makeStandardMarkdown(raw) {
         html = `\`${content}\``;
       } else if (Object.keys(statEmojis).includes(content.toLowerCase())) {
         // Append emoji to stat labels
-        html = `**${statEmojis[content.toLowerCase()]}${toTitleCase(content)}**`;
+        let label = content;
+        if (Object.keys(statAliases).includes(content.toLowerCase())) {
+          label = statAliases[content];
+        }
+        html = `**${statEmojis[content.toLowerCase()]}${toTitleCase(label)}**`;
       } else if (content.match(/^\d*[gsc]$/g)) {
         // Substitute money labels for corresponding emoji
         content = content.replace("g", "🥇");
@@ -510,7 +518,11 @@ function custommd(raw) {
         style = ` style="color: ${elementColors[content][1]}; background-color:${elementColors[content][0]}"`;
       } else if (Object.keys(statEmojis).includes(content.toLowerCase())) {
         // Append emoji to stat labels
-        content = `<span class=premoji>${statEmojis[content.toLowerCase()]}</span>${toTitleCase(content)}`
+        let label = content;
+        if (Object.keys(statAliases).includes(content.toLowerCase())) {
+          label = statAliases[content];
+        }
+        content = `<span class=premoji>${statEmojis[content.toLowerCase()]}</span>${toTitleCase(label)}`
         // Stylise stat labels
         cls = "statlbl";
         style = " style=font-weight:bold;";
