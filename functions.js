@@ -30,7 +30,9 @@ const statEmojis = {
     "cun": "🕵️",
     "chr": "👏",
     "mvt": "👟",
-    "act": "🌟"
+    "act": "🌟",
+    "movement": "👟",
+    "actions": "🌟"
 };
 const pronounMap = {
     "f": "she/her",
