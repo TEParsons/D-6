@@ -196,14 +196,8 @@ function getJSON() {
   // Get values
   for (let emt of document.getElementById("write").elements) {
     // markdown object isn't recognised by form, so alias it with its editor
-    if (emt === document.getElementById("background").editor) {
-      emt = document.getElementById("background");
-    }
-    if (emt === document.getElementById("abilities").editor) {
-      emt = document.getElementById("abilities");
-    }
-    if (emt === document.getElementById("inventory").editor) {
-      emt = document.getElementById("inventory");
+    if (emt.className === "md-editor") {
+        emt = emt.parentNode;
     }
     if (emt.dataset.saveload !== undefined) {
       // Only add relevant values to outDict
@@ -422,14 +416,8 @@ function setJSON(inStr) {
   // Restore values
   for (let emt of document.getElementById("write").elements) {
     // markdown object isn't recognised by form, so alias it with its editor
-    if (emt === document.getElementById("background").editor) {
-      emt = document.getElementById("background");
-    }
-    if (emt === document.getElementById("abilities").editor) {
-      emt = document.getElementById("abilities");
-    }
-    if (emt === document.getElementById("inventory").editor) {
-      emt = document.getElementById("inventory");
+    if (emt.className === "md-editor") {
+        emt = emt.parentNode;
     }
     // Only use relevant values from inDict
     if (emt.id in inDict) {
