@@ -378,6 +378,15 @@ mark-down {
 mark-down.compact {
     min-height: 20rem;
 }
+mark-down[data-readonly] {
+    min-height: 0;
+    height: auto;
+}
+mark-down[data-readonly] .md-viewer {
+    min-height: 0;
+    height: auto;
+    background-color: transparent;
+}
 mark-down .md-viewer, mark-down .md-editor {
   background-color: white;
   padding: 2mm;
