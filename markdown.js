@@ -29,6 +29,10 @@ class MarkdownElement extends HTMLElement {
     this.toggle.parent = this;
     this.toggle.onclick = toggleMarkdownMode;
     this.appendChild(this.toggle);
+    // Hide toggle in readonly mode
+    if ("readonly" in this.dataset) {
+        this.toggle.style.display = "none";
+    }
 
     // Make both editor and viewer the same size as markdown element
     for (let subemt of [this.editor, this.viewer]) {
@@ -47,7 +51,7 @@ class MarkdownElement extends HTMLElement {
 
     // Set initial mode to view if requested
     let mode = this.getAttribute("mode")
-    if (mode === "view") {
+    if (mode === "view" || "readonly" in this.dataset) {
       this.editor.hidden = true;
       this.toggle.mode = "view";
       this.toggle.textContent = "✏";
