@@ -36,8 +36,11 @@ class MarkdownElement extends HTMLElement {
 
     // Make both editor and viewer the same size as markdown element
     for (let subemt of [this.editor, this.viewer]) {
-      subemt.style.position = "absolute";
-      subemt.style.height = subemt.style.width = "100%";
+      if (!("readonly" in this.dataset)) {
+        subemt.style.position = "absolute";
+        subemt.style.height = "100%";
+      }
+      subemt.style.width = "100%";
       subemt.style.top = subemt.style.left = subemt.style.bottom = subemt.style.right = 0;
     }
     // Style editor
