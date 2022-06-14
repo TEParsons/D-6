@@ -572,13 +572,13 @@ section#types.compact {
    grid-template-columns: [left] auto min-content auto min-content auto min-content auto min-content [right];
 }
 
-section#actions {
+section#action-stats {
   grid-auto-flow: column;
   justify-content: start;
   padding-right: 2cm;
   margin-bottom: 5mm;
 }
-section#actions output {
+section#action-stats output {
     margin-right: 5mm;
 }
 
