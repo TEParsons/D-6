@@ -386,6 +386,7 @@ mark-down[data-readonly] .md-viewer {
     min-height: 0;
     height: auto;
     background-color: transparent;
+    margin-bottom: -1rem;
 }
 mark-down .md-viewer, mark-down .md-editor {
   background-color: white;
