@@ -10,9 +10,6 @@ const md = window.markdownit({
 
 class MarkdownElement extends HTMLElement {
   connectedCallback() {
-    // Store and clear initial contents
-    let content = this.textContent
-    this.textContent = ""
     // Make sure markdown element has a position so sub-elements are positioned relative to it
     this.style.display = "block";
     this.style.position = "relative";
@@ -20,7 +17,6 @@ class MarkdownElement extends HTMLElement {
     // Make input
     this.editor = document.createElement("textarea");
     this.editor.className = "md-editor";
-    this.editor.value = content;
     this.appendChild(this.editor);
     // Make viewer
     this.viewer = document.createElement("div");
@@ -71,8 +67,21 @@ class MarkdownElement extends HTMLElement {
         console.log(`Function ${this.dataset.postrender} not found, will use default postrender.`)
       }
     }
-    // Render initial markdown
-    this.render();
+    // Wait for DOM to load
+    setTimeout(() => {
+        // Store and clear initial contents
+        let content = ""
+        for (let node of this.childNodes) {
+            if (node instanceof Text) {
+                content = node.nodeValue;
+                node.nodeValue = "";
+            }
+        }
+        // Assign contents to editor
+        this.editor.value = content;
+        // Render
+        this.render();
+    });
   }
 
   render() {
