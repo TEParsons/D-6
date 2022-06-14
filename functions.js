@@ -157,6 +157,10 @@ function updateStats() {
   updateMaxHp();
   // Update action stats
   updateActionStats();
+  // Update markdown
+  for (let emt of document.getElementsByTagName("mark-down")) {
+    emt.render()
+  }
 }
 
 function updateActionStats() {
