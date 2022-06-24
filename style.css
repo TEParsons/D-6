@@ -306,6 +306,16 @@ img {
   border: none;
   transform: rotate(1deg) scale(0.95, 0.95);
 }
+img.logo {
+    padding: 0;
+    padding-bottom: 0;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    transform: none;
+    height: auto;
+    max-height: 100%;
+}
 
 blockquote {
   position: relative;
@@ -489,7 +499,9 @@ select#pronouns option, select#align option {
 }
 
 section#saveload input[type=button] {
+  height: 3rem;
   padding: 0.1em 1em;
+  border-radius: 1rem;
 }
 
 /** Roller **/
@@ -589,5 +601,9 @@ section#currency {
 }
 
 section#saveload {
-  grid-template-columns: [left] max-content max-content max-content auto [right];
+  width: 100%;
+  padding-right: 2cm;
+  padding-bottom: 1cm;
+  grid-template-columns: [left] auto max-content max-content max-content [right];
+  grid-template-rows: 3rem;
 }
