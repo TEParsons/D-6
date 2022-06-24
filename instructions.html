@@ -1,0 +1,36 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.0/markdown-it.min.js"></script>
+    <script src="markdown.js"></script>
+    <script src="functions.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<div id=write>
+    <h1>Instructions</h1>
+    <h2>Rolling</h2>
+    <p>The way you do anything in this game is to say what you're gonna do and the DM will tell you what skill to roll for and how many dice. You roll that many D6s and, if total value of all the dice is less than the skill in question, you succeed! Rolling all 6s is always a fail regardless of score, rolling all 1s is always a success, and rolling exactly the same as the skill is a very slim success.</p>
+    <p>Contested rolls, when two people roll in competition with one another, are a bit more complicated. To make a contested roll, the number of dice to roll is double your opponent's level. Likewise, they roll double your level, and you each compare your scores to the relevant skill. Whoever rolls the most below their skill wins the contest.</p>
+    <p>Rolling to deal damage is a special kind of contested roll; after the outcome, if the attacker wins, the defender takes damage equal to however much the attacker rolled below their stat.</p>
+    <h2>Skills</h2>
+    <p>But what do the skills actually mean? When will you need which skill? That's up to the DM, but here's some general guidance:</p>
+    <ul>
+        <li><b>Strength (<em>Str</em>):</b> How strong you are; how hard you hit, how much you can lift, how insecure you make the other patrons at the gym.</li>
+        <li><b>Defence (<em>Def</em>):</b> How sturdy you are; how much punishment you can take, how resilient you are to sickness.</li>
+        <li><b>Agility (<em>Agl</em>):</b> How well you can move; how quietly you can sneak around, how good your aim is, how steady your hand is.</li>
+        <li><b>Knowledge (<em>Kno</em>):</b> How much you know; being highly educated, knowing lots about a subject. Book smarts.</li>
+        <li><b>Cunning (<em>Cun</em>):</b> How sharp your mind is; reading people, strategising, putting the pieces together. Street smarts.</li>
+        <li><b>Charisma (<em>Chr</em>):</b> How charming you are; performing for a crowd, telling a believable lie, and most importantly... seduction.</li>
+    </ul>
+    <h2>Levelling</h2>
+    <p>Each die you roll earns 1 experience point, if you use the dice roller on this character sheet this is all done for you. When you have enough experience points you'll level up, increasing your max health and allowing you to add more points to your skills. More difficult challenges will require more dice rolls, so the more you push yourself the faster you'll level up, but the more danger you'll put yourself in!</p>
+    <h2>Health</h2>
+    <p>Whenever you take damage, you'll lose health points. When you have chance to rest, you'll return to full health - when your DM tells you to, click the ☾ to refill your health.</p>
+    <p>The max your health can be is 6 * <em>level</em> + <em>def</em>.</p>
+    <p>When your health points fall below zero, you need to make a death save! Roll as many dice as you are health points below zero - to survive, you need to roll below your <em>def</em>. On a success, your health resets to 0, meaning any damage at all will put you back in the negative and require another death save. On a fail, you die!</p>
+    <h2>Damage Types</h2>
+    <p>Damage isn't all the same! <span class=typelbl>fire</span> is going to hurt a wooden mannequin a lot more than a salamander, and you'll be much more successful slicing a loaf of bread with a <span class=typelbl>sharp</span> knife than a <span class=typelbl>blunt</span> spoon. The drop-down boxes at the bottom of the sheet indicate what to multiply damage of each type by before applying it; most types will just be x1, meaning no change, but if you're weak to a type then damage will be doubled, while if you're resistant to a type then damage will be halved. If you're completely immune to a type, then the multiplier is 0.</p>
+    <h2>What's Up With Those Textboxes?</h2>
+    <p>The textboxes at the bottom are a bit special: You can write in markdown, a very simple and easy method to write pure text with bits marked as being bold, italic, headings, and so on. You can even add images!</p>
+    <p>Just type out what you like using the syntax described <a href="https://www.markdownguide.org/basic-syntax/">here</a>, then click the 👁 button to view it. To go back to editing, click the ✏ button.</p>
+</div>

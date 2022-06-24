@@ -607,3 +607,14 @@ section#saveload {
   grid-template-columns: [left] auto max-content max-content max-content [right];
   grid-template-rows: 3rem;
 }
+
+
+/** Landing Page **/
+
+#landing-header {
+    padding-left: 3cm;
+    padding-right: 1cm;
+    padding-bottom: 1cm;
+    border-bottom: 1px solid white;
+    margin-bottom: 1cm;
+}

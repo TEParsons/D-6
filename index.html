@@ -5,266 +5,30 @@
     <script src="functions.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
+<div id="write">
+    <header>
+        <img src="Logotype.svg" id="landing-header" class="logo" />
+    </header>
+    <h3>
+        Choices await you, adventurer...
+    </h3>
+    <ul>
+        <li>
+            <a href="instructions.html">
+                Instructions
+            </a>
+        </li>
+        <li>
+            <a href="player.html">
+                Character Sheet
+            </a>
+        </li>
+        <li>
+            <a href="npc.html">
+                DM Resources
+            </a>
+        </li>
+    </ul>
+</div>
 
-<form id=write>
-    <details id=instr>
-        <summary>Instructions</summary>
-        <h2>Rolling</h2>
-        <p>The way you do anything in this game is to say what you're gonna do and the DM will tell you what skill to roll for and how many dice. You roll that many D6s and, if total value of all the dice is less than the skill in question, you succeed! Rolling all 6s is always a fail regardless of score, rolling all 1s is always a success, and rolling exactly the same as the skill is a very slim success.</p>
-        <p>Contested rolls, when two people roll in competition with one another, are a bit more complicated. To make a contested roll, the number of dice to roll is double your opponent's level. Likewise, they roll double your level, and you each compare your scores to the relevant skill. Whoever rolls the most below their skill wins the contest.</p>
-        <p>Rolling to deal damage is a special kind of contested roll; after the outcome, if the attacker wins, the defender takes damage equal to however much the attacker rolled below their stat.</p>
-        <h2>Skills</h2>
-        <p>But what do the skills actually mean? When will you need which skill? That's up to the DM, but here's some general guidance:</p>
-        <ul>
-            <li><b>Strength (<em>Str</em>):</b> How strong you are; how hard you hit, how much you can lift, how insecure you make the other patrons at the gym.</li>
-            <li><b>Defence (<em>Def</em>):</b> How sturdy you are; how much punishment you can take, how resilient you are to sickness.</li>
-            <li><b>Agility (<em>Agl</em>):</b> How well you can move; how quietly you can sneak around, how good your aim is, how steady your hand is.</li>
-            <li><b>Knowledge (<em>Kno</em>):</b> How much you know; being highly educated, knowing lots about a subject. Book smarts.</li>
-            <li><b>Cunning (<em>Cun</em>):</b> How sharp your mind is; reading people, strategising, putting the pieces together. Street smarts.</li>
-            <li><b>Charisma (<em>Chr</em>):</b> How charming you are; performing for a crowd, telling a believable lie, and most importantly... seduction.</li>
-        </ul>
-        <h2>Levelling</h2>
-        <p>Each die you roll earns 1 experience point, if you use the dice roller on this character sheet this is all done for you. When you have enough experience points you'll level up, increasing your max health and allowing you to add more points to your skills. More difficult challenges will require more dice rolls, so the more you push yourself the faster you'll level up, but the more danger you'll put yourself in!</p>
-        <h2>Health</h2>
-        <p>Whenever you take damage, you'll lose health points. When you have chance to rest, you'll return to full health - when your DM tells you to, click the ☾ to refill your health.</p>
-        <p>The max your health can be is 6 * <em>level</em> + <em>def</em>.</p>
-        <p>When your health points fall below zero, you need to make a death save! Roll as many dice as you are health points below zero - to survive, you need to roll below your <em>def</em>. On a success, your health resets to 0, meaning any damage at all will put you back in the negative and require another death save. On a fail, you die!</p>
-        <h2>Damage Types</h2>
-        <p>Damage isn't all the same! <span class=typelbl>fire</span> is going to hurt a wooden mannequin a lot more than a salamander, and you'll be much more successful slicing a loaf of bread with a <span class=typelbl>sharp</span> knife than a <span class=typelbl>blunt</span> spoon. The drop-down boxes at the bottom of the sheet indicate what to multiply damage of each type by before applying it; most types will just be x1, meaning no change, but if you're weak to a type then damage will be doubled, while if you're resistant to a type then damage will be halved. If you're completely immune to a type, then the multiplier is 0.</p>
-        <h2>What's Up With Those Textboxes?</h2>
-        <p>The textboxes at the bottom are a bit special: You can write in markdown, a very simple and easy method to write pure text with bits marked as being bold, italic, headings, and so on. You can even add images!</p>
-        <p>Just type out what you like using the syntax described <a href="https://www.markdownguide.org/basic-syntax/">here</a>, then click the 👁 button to view it. To go back to editing, click the ✏ button.</p>
-        <hr>
-    </details>
 
-    <section id=basics>
-        <label for=lvl>
-            <tooltip>Level</tooltip>
-            🏆
-        </label>
-        <label for=exp>Experience</label>
-
-        <input id=lvl type=number value=1 min=1 disabled></input>
-        <input id=exp type=number value=0 min=0 onchange=updateLvl() data-saveload></input>
-
-        <input id=name placeholder="Name..." data-saveload></input>
-
-        <select id=pronouns onchange="this.style.color='black'" data-saveload>
-            <option value="" selected disabled hidden>Pronouns...</option>
-            <option value=m>he/him</option>
-            <option value=nb>they/them</option>
-            <option value=f>she/her</option>
-            <option value=ns>it/its</option>
-            <option value=oth>other</option>
-        </select>
-        <input id=species placeholder="Species..." data-saveload></input>
-        <select id=align onchange="this.style.color='black'" data-saveload>
-            <option value="" selected disabled hidden>Alignment...</option>
-            <option value=lg>Lawful Good</option>
-            <option value=ng>Neutral Good</option>
-            <option value=cg>Chaotic Good</option>
-            <option value=ln>Lawful Neutral</option>
-            <option value=nn>True Neutral</option>
-            <option value=cn>Chaotic Neutral</option>
-            <option value=le>Lawful Evil</option>
-            <option value=ne>Neutral Evil</option>
-            <option value=ce>Chaotic Evil</option>
-        </select>
-    </section>
-
-    <h1>Rolling</h1>
-    <section id=stats>
-        <label for=str>
-            <tooltip>Strength</tooltip>
-            <span class="premoji">💪</span> Str
-        </label>
-        <label for=def>
-            <tooltip>Defence</tooltip>
-            <span class="premoji">🛡️</span> Def
-        </label>
-        <label for=agl>
-            <tooltip>Agility</tooltip>
-            <span class="premoji">🪶</span> Agl
-        </label>
-
-        <input id=str type=number value=0 min=0 onchange=updateStats() data-saveload></input>
-        <input id=def type=number value=0 min=0 onchange=updateStats() data-saveload></input>
-        <input id=agl type=number value=0 min=0 onchange=updateStats() data-saveload></input>
-
-        <label for=kno>
-            <tooltip>Knowledge</tooltip>
-            <span class="premoji">📖</span> Kno
-        </label>
-        <label for=cun>
-            <tooltip>Cunning</tooltip>
-            <span class="premoji">🔍</span> Cun
-        </label>
-        <label for=chr>
-            <tooltip>Charm</tooltip>
-            <span class="premoji">👏</span> Chr
-        </label>
-
-        <input id=kno type=number value=0 min=0 onchange=updateStats() data-saveload></input>
-        <input id=cun type=number value=0 min=0 onchange=updateStats() data-saveload></input>
-        <input id=chr type=number value=0 min=0 onchange=updateStats() data-saveload></input>
-    </section>
-
-    <section id=rolling>
-        <output id=roll-total for=roll>0</output>
-        <output id=roll-string for=roll></output>
-        <div id=ndice-ctrls>
-            <output id=ndice>1</output>
-            <input type=button value="+" onclick=updateNDice(1)></input>
-            <input type=button value="-" onclick=updateNDice(-1)></input>
-        </div>
-        <input id=roll type=button value="Roll!" onclick=doRoll()></input>
-    </section>
-
-    <h1>Damage</h1>
-    <h2>Health</h2>
-    <section id=health>
-        <input type=button id=rest alt=rest value=☾ onclick=doRest()></input>
-        <input id=hp type=number value=0 data-saveload></input>
-        <output id=max-hp>10</output>
-    </section>
-
-    <h2>Damage Multipliers</h2>
-    <section id=types>
-        <label class=typelbl for=sharp>sharp</label>
-        <label class=typelbl for=fire>fire</label>
-        <label class=typelbl for=water>water</label>
-        <label class=typelbl for=earth>earth</label>
-        <label class=typelbl for=air>air</label>
-        <label class=typelbl for=psychic>psychic</label>
-
-        <select id=sharp data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-        <select id=fire data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-        <select id=water data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-        <select id=earth data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-        <select id=air data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-        <select id=psychic data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-
-        <label class=typelbl for=blunt>blunt</label>
-        <label class=typelbl for=light>light</label>
-        <label class=typelbl for=ice>ice</label>
-        <label class=typelbl for=plant>plant</label>
-        <label class=typelbl for=electric>electric</label>
-        <label class=typelbl for=poison>poison</label>
-
-        <select id=blunt data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-        <select id=light data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-        <select id=ice data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-        <select id=plant data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-        <select id=electric data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-        <select id=poison data-saveload>
-            <option value=2>x2</option>
-            <option value=1 selected>x1</option>
-            <option value=0.5>x1/2</option>
-            <option value=0>x0</option>
-        </select>
-    </section>
-
-    <h1>Abilities</h1>
-    <section id=action-stats>
-        <label for=mvt>
-            <tooltip>Movement per turn</tooltip>
-            👟
-        </label>
-        <output id=mvt>30</output>
-        <label for=act>
-            🌟
-            <tooltip>Actions per turn</tooltip>
-        </label>
-        <output id=act>1</output>
-    </section>
-    <h2>Actions</h2>
-    <mark-down id=default-actions data-postrender=custommd data-readonly>**Dash** Give up an action to move an additional [1]{mvt} per turn.</mark-down>
-    <mark-down id=actions data-postrender=custommd data-saveload></mark-down>
-    <h2>Attributes</h2>
-    <mark-down id=abilities data-postrender=custommd data-saveload></mark-down>
-
-    <h1>Inventory</h1>
-    <section id=currency>
-        <label for="gold">🥇<sup style="font-size: 0.75em">💰</sup></label>
-        <input id=gold type="number" value=0 onchange=updateCurrency() data-saveload></input>
-        <label for="silver">🥈<sup style="font-size: 0.75em">💰</sup></label>
-        <input id=silver type="number" value=0 onchange=updateCurrency() data-saveload></input>
-        <label for="copper">🥉<sup style="font-size: 0.75em">💰</sup></label>
-        <input id=copper type="number" value=0 onchange=updateCurrency() data-saveload></input>
-    </section>
-    <mark-down id=inventory data-postrender=custommd data-saveload></mark-down>
-
-    <h1>Background</h1>
-    <mark-down id=background data-postrender=custommd data-saveload></mark-down>
-
-    <hr>
-
-    <section id=saveload>
-        <img src="Logotype.svg" class="logo"/>
-        <input type=button value="Load" onclick=load()></input>
-        <input type="file" id=loadbuffer style="display:none"></input>
-        <input type=button value="Save" onclick=save()></input>
-        <input type=button value="Export" onclick=exportmd()></input>
-        <a id=savebuffer style="display:none"></a>
-    </section>
-
-</form>
-
-<footer>
-    <script src="script.js"></script>
-</footer>

@@ -7,13 +7,17 @@
 </head>
 
 <form id=write>
+
+
     <section id=basics>
         <label for=lvl>
             <tooltip>Level</tooltip>
             🏆
         </label>
+        <label for=exp>Experience</label>
 
-        <input id=lvl type=number value=1 min=1 onchange=updateStats() data-saveload></input>
+        <input id=lvl type=number value=1 min=1 disabled></input>
+        <input id=exp type=number value=0 min=0 onchange=updateLvl() data-saveload></input>
 
         <input id=name placeholder="Name..." data-saveload></input>
 
@@ -40,88 +44,101 @@
         </select>
     </section>
 
-        <section class=compact id=stats>
+    <h1>Rolling</h1>
+    <section id=stats>
         <label for=str>
-            <tooltip>Strength (Str)</tooltip>
-            <span class="premoji">💪</span>
+            <tooltip>Strength</tooltip>
+            <span class="premoji">💪</span> Str
         </label>
         <label for=def>
-            <tooltip>Defence (Def)</tooltip>
-            <span class="premoji">🛡️</span>
+            <tooltip>Defence</tooltip>
+            <span class="premoji">🛡️</span> Def
         </label>
         <label for=agl>
-            <tooltip>Agility (Agl)</tooltip>
-            <span class="premoji">🪶</span>
-        </label>
-        <label for=kno>
-            <tooltip>Knowledge (Kno)</tooltip>
-            <span class="premoji">📖</span>
-        </label>
-        <label for=cun>
-            <tooltip>Cunning (Cun)</tooltip>
-            <span class="premoji">🔍</span>
-        </label>
-        <label for=chr>
-            <tooltip>Charm (Chr)</tooltip>
-            <span class="premoji">👏</span>
+            <tooltip>Agility</tooltip>
+            <span class="premoji">🪶</span> Agl
         </label>
 
         <input id=str type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=def type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=agl type=number value=0 min=0 onchange=updateStats() data-saveload></input>
+
+        <label for=kno>
+            <tooltip>Knowledge</tooltip>
+            <span class="premoji">📖</span> Kno
+        </label>
+        <label for=cun>
+            <tooltip>Cunning</tooltip>
+            <span class="premoji">🔍</span> Cun
+        </label>
+        <label for=chr>
+            <tooltip>Charm</tooltip>
+            <span class="premoji">👏</span> Chr
+        </label>
+
         <input id=kno type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=cun type=number value=0 min=0 onchange=updateStats() data-saveload></input>
         <input id=chr type=number value=0 min=0 onchange=updateStats() data-saveload></input>
     </section>
 
+    <section id=rolling>
+        <output id=roll-total for=roll>0</output>
+        <output id=roll-string for=roll></output>
+        <div id=ndice-ctrls>
+            <output id=ndice>1</output>
+            <input type=button value="+" onclick=updateNDice(1)></input>
+            <input type=button value="-" onclick=updateNDice(-1)></input>
+        </div>
+        <input id=roll type=button value="Roll!" onclick=doRoll()></input>
+    </section>
+
+    <h1>Damage</h1>
+    <h2>Health</h2>
     <section id=health>
         <input type=button id=rest alt=rest value=☾ onclick=doRest()></input>
         <input id=hp type=number value=0 data-saveload></input>
         <output id=max-hp>10</output>
     </section>
-    <section class=compact id=types>
+
+    <h2>Damage Multipliers</h2>
+    <section id=types>
         <label class=typelbl for=sharp>sharp</label>
+        <label class=typelbl for=fire>fire</label>
+        <label class=typelbl for=water>water</label>
+        <label class=typelbl for=earth>earth</label>
+        <label class=typelbl for=air>air</label>
+        <label class=typelbl for=psychic>psychic</label>
+
         <select id=sharp data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
             <option value=0.5>x1/2</option>
             <option value=0>x0</option>
         </select>
-
-        <label class=typelbl for=fire>fire</label>
         <select id=fire data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
             <option value=0.5>x1/2</option>
             <option value=0>x0</option>
         </select>
-
-        <label class=typelbl for=water>water</label>
         <select id=water data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
             <option value=0.5>x1/2</option>
             <option value=0>x0</option>
         </select>
-
-        <label class=typelbl for=earth>earth</label>
         <select id=earth data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
             <option value=0.5>x1/2</option>
             <option value=0>x0</option>
         </select>
-
-        <label class=typelbl for=air>air</label>
         <select id=air data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
             <option value=0.5>x1/2</option>
             <option value=0>x0</option>
         </select>
-
-
-        <label class=typelbl for=psychic>psychic</label>
         <select id=psychic data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
@@ -130,46 +147,42 @@
         </select>
 
         <label class=typelbl for=blunt>blunt</label>
+        <label class=typelbl for=light>light</label>
+        <label class=typelbl for=ice>ice</label>
+        <label class=typelbl for=plant>plant</label>
+        <label class=typelbl for=electric>electric</label>
+        <label class=typelbl for=poison>poison</label>
+
         <select id=blunt data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
             <option value=0.5>x1/2</option>
             <option value=0>x0</option>
         </select>
-
-        <label class=typelbl for=light>light</label>
         <select id=light data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
             <option value=0.5>x1/2</option>
             <option value=0>x0</option>
         </select>
-
-        <label class=typelbl for=ice>ice</label>
         <select id=ice data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
             <option value=0.5>x1/2</option>
             <option value=0>x0</option>
         </select>
-
-        <label class=typelbl for=plant>plant</label>
         <select id=plant data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
             <option value=0.5>x1/2</option>
             <option value=0>x0</option>
         </select>
-
-        <label class=typelbl for=electric>electric</label>
         <select id=electric data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
             <option value=0.5>x1/2</option>
             <option value=0>x0</option>
         </select>
-
-        <label class=typelbl for=poison>poison</label>
         <select id=poison data-saveload>
             <option value=2>x2</option>
             <option value=1 selected>x1</option>
@@ -191,11 +204,11 @@
         </label>
         <output id=act>1</output>
     </section>
-        <h2>Actions</h2>
+    <h2>Actions</h2>
     <mark-down id=default-actions data-postrender=custommd data-readonly>**Dash** Give up an action to move an additional [1]{mvt} per turn.</mark-down>
-    <mark-down id=actions class=compact data-postrender=custommd data-saveload></mark-down>
+    <mark-down id=actions data-postrender=custommd data-saveload></mark-down>
     <h2>Attributes</h2>
-    <mark-down id=abilities class=compact data-postrender=custommd data-saveload></mark-down>
+    <mark-down id=abilities data-postrender=custommd data-saveload></mark-down>
 
     <h1>Inventory</h1>
     <section id=currency>
@@ -206,15 +219,15 @@
         <label for="copper">🥉<sup style="font-size: 0.75em">💰</sup></label>
         <input id=copper type="number" value=0 onchange=updateCurrency() data-saveload></input>
     </section>
-    <mark-down id=inventory class=compact data-postrender=custommd data-saveload></mark-down>
+    <mark-down id=inventory data-postrender=custommd data-saveload></mark-down>
 
     <h1>Background</h1>
-    <mark-down id=background class=compact data-postrender=custommd data-saveload></mark-down>
+    <mark-down id=background data-postrender=custommd data-saveload></mark-down>
 
     <hr>
 
     <section id=saveload>
-                <a href=".">
+        <a href=".">
             <img src="Logotype.svg" class="logo"/>
         </a>
         <input type=button value="Load" onclick=load()></input>
