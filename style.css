@@ -9,14 +9,17 @@
   --mono: 'JetBrains Mono';
   font-family: var(--body), 'Noto Colr Emoji Glyf';
   font-size: 12pt;
-
+  /* Notebook colours */
   --offblack: #141414;
   --grey: #36453B;
   --offwhite: #f2f2f2;
   --tan: tan;
-  --blue: #449DD1;
   --red: #BD4F6C;
-
+  /* D6 colours */
+  --blue: #1E3888;
+  --rust: #A3320B;
+  --yellow: #FCBF49;
+  --green: #0CCE6B;
 }
 
 /** Formatting **/
@@ -117,7 +120,9 @@ body:after, .typora-export-content:after {
 #write > div,
 #write > figure,
 #write > section,
-#write details {
+#write details,
+#write nav
+{
   position: relative;
   border-bottom: 0.5mm solid white;
   padding-left: 3cm;
@@ -616,5 +621,20 @@ section#saveload {
     padding-right: 1cm;
     padding-bottom: 1cm;
     border-bottom: 1px solid white;
-    margin-bottom: 1cm;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: [left] auto auto auto [right];
+    column-gap: 5mm;
+}
+nav a, nav a:visited {
+    color: var(--black);
+    text-align: center;
+}
+nav a:hover {
+    color: var(--blue);
+}
+nav a img {
+    width: 10rem;
 }
