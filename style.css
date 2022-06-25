@@ -248,7 +248,8 @@ tooltip {
     box-shadow: 1mm 1mm 2mm rgba(0, 0, 0, 0.2)
 }
 
-label:hover > tooltip {
+label:hover > tooltip,
+nav a:hover > tooltip {
     display: block;
 }
 
@@ -631,6 +632,8 @@ nav {
 nav a, nav a:visited {
     color: var(--black);
     text-align: center;
+    display: block;
+    position: relative;
 }
 nav a:hover {
     color: var(--blue);
