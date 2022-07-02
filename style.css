@@ -237,6 +237,7 @@ code, .cm-comment {
 
 tooltip {
     display: none;
+    font-family: var(--body);
 
     position: absolute;
     top: 100%;
