@@ -76,18 +76,41 @@ class MarkdownElement extends HTMLElement {
     }
     // Wait for DOM to load
     setTimeout(() => {
-        // Store and clear initial contents
+        // Clear initial contents
         let content = ""
-        for (let node of this.childNodes) {
+        // If given
+        if (this.dataset.src) {
+          // Create reader
+          let xmlhttp
+          if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+          }
+          else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          xmlhttp.parent = this;
+          xmlhttp.onreadystatechange = function() {
+            this.parent.editor.value = xmlhttp.responseText;
+            // Render
+            this.parent.render();
+          }
+          xmlhttp.open("GET", this.dataset.src, true);
+
+          // Load
+          xmlhttp.send();
+        } else {
+          // Store initial contents
+          for (let node of this.childNodes) {
             if (node instanceof Text) {
                 content = node.nodeValue;
                 node.nodeValue = "";
             }
+          }
+          // Assign contents to editor
+          this.editor.value = content;
+          // Render
+          this.render();
         }
-        // Assign contents to editor
-        this.editor.value = content;
-        // Render
-        this.render();
     });
   }
 
