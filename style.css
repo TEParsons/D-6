@@ -641,3 +641,9 @@ nav a:hover {
 nav a img {
     width: 10rem;
 }
+
+#instr {
+    font-size: 1.1em;
+    line-height: 1.4em;
+    padding-top: 2rem;
+}
