@@ -46,7 +46,95 @@
         <output id=max-hp>10</output>
     </section>
     <!-- Hidden ctrls for rendering -->
-    <mark-down id="instr" data-src="instructions.txt" data-postrender=custommd data-readonly></mark-down>
+    <mark-down id="instr" data-postrender=custommd data-readonly>
+# What is D6?
+D6 is a Table Top Role Playing Game (TTRPG), like Pathfinder or Dungeons & Dragons.
+
+Essentially, the person running the game, the Game Master (GM), describes a scenario and you, the player, decide how your character will respond. You tell the GM what you'd like to do, they ask you to roll some dice to see how successful you are. In a nutshell, that's it! That's the game! But, of course, there's more to it than that...
+
+## Rolling
+
+So how does rolling work, specifically? Well, there's two kinds of roll you can make:
+
+### Flat Roll
+
+With a flat roll, the GM will tell you a skill and a number of dice to roll, based on the difficulty of what you're trying to do. The more difficult the task, the more dice you roll. If the total on the dice is less than your character's score in that skill, you succeed! If it's greater than, you fail. Rolling all 6s is always a fail regardless of score, rolling all 1s is always a success, and rolling exactly the same as the skill is a very slim success. Optionally, your GM may opt to punish you for all 6s, reward you for all 1s, or have some cost to your success if you roll spot on.
+
+### Contested Roll
+
+When rolling in competition with another character, it is called a contested roll. In a contested roll, you choose how many dice to roll, then both you and your opponent roll that many dice. Whoever rolls the most below their skill score wins the contest, even if their roll was higher! Keep in mind that you may not be rolling against the same skill; for example, if you attack with a weapon which uses [[str]], the skill which you need to roll lower than is your [[str]]. However, your opponent may choose to dodge the attack by rolling below their [[agl]] or block the attack with their armour or a shield by rolling below their [[def]].
+
+## Skills
+
+But what do the skills actually mean? When will you need which skill? That's up to the GM, but here's some general guidance:
+
+- **Strength** ([[str]]): How strong you are; how hard you hit, how much you can lift, how insecure you make the other patrons at the gym.
+- **Defence** ([[def]]): How sturdy you are; how much punishment you can take, how resilient you are to sickness.
+- **Agility** ([[agl]]): How well you can move; how quietly you can sneak around, how good your aim is, how steady your hand is.
+- **Knowledge** ([[kno]]): How much you know; being highly educated, knowing lots about a subject. Book smarts.
+- **Cunning** ([[cun]]): How sharp your mind is; reading people, strategising, putting the pieces together. Street smarts.
+- **Charisma** ([[chr]]): How charming you are; performing for a crowd, telling a believable lie, and most importantly... seduction.
+
+## Levelling
+
+Each die you roll earns 1 experience point. If you use the dice roller on your character sheet, this is all done for you. When you have enough experience points you'll level up, increasing your max health and allowing you to add more points to your skills. More difficult challenges will require more dice rolls, so the more you push yourself the faster you'll level up, but the more danger you'll put yourself in!
+
+## In Action
+
+Most of the time, you'll be free to do what you like as often as you like. However, some situations will be time sensitive; when you're doing battle, rushing to put out a fire, competing in a race, etc. you will need to lay out what you're doing and when with a bit more precision. We call these situations being "in action".
+
+### Turns
+
+When you're in action, all players and characters take turns in the order of their [[agl]] scores, highest first to lowest last. Each turn lasts 6 seconds in canon, within this 6 seconds you can, in any order:
+
+- **Move** the distance indicated by the [[mvt]] stat on your character sheet
+
+- **Do** the things described in the "Actions" section of your character sheet. How many of these things you can do in a single turn is dictated by your [[act]] stat, which starts off being just 1 and increases by 1 every 3 levels. By default, all characters have the ***Dash*** action, allowing you to forgo taking an action in order to increase the distance you can move this turn.
+
+- **Finesse** your turn with "free actions"; inconsequential things like shouting a cutting remark at your opponent, making a lewd gesture or popping a cheeky fart are all free and won't affect how many actions you have available.
+
+### Actions vs Attributes
+
+You'll notice that your character sheet has different sections for "Actions" vs "Attributes"; this is to distinguish between things which, to do while in action, will take up your action vs things which passively happen. For example, spitting venom to deal [[poison]] damage would be an action, but having toxic skin so enemies touching you take [[poison]] damage would be an attribute.
+
+### Health
+
+Whenever you take damage, you'll lose health points. When you have chance to rest, you'll return to full health - when your DM tells you to, click the ☾ to refill your health.
+
+The max your health can be is 6 * [[lvl]] + [[def]].
+
+When your health points fall below zero, you need to make a death save! Roll as many dice as you are health points below zero - to survive, you need to roll below your [[def]]. On a success, your health resets to 0, meaning any damage at all will put you back in the negative and require another death save. On a fail, you die!
+
+### Damage Types
+
+Damage isn't all the same! [[fire]] is going to hurt a wooden mannequin a lot more than it would a salamander, and you'll be much more successful slicing a loaf of bread with a [[sharp]] knife than a [[blunt]] spoon. The drop-down boxes at the bottom of the sheet indicate what to multiply damage of each type by before applying it to yourself; most types will just be x1, meaning no change, but if you're weak to a type then damage will be doubled, while if you're resistant to a type then damage will be halved. If you're completely immune to a type, then the multiplier is 0, so you cannot be hurt by this damage type.
+
+## Other Bits
+
+### Inventory
+
+What's a good adventure without a bit of loot? The "Inventory" section of your character sheet is where you jot down all the bits and bobs which your character has picked up. Some of these will be useful, maybe you have some health potions or a cool weapon, some... maybe less so. Of course, you never know when you'll need a rusty sewing bobbin.
+
+Included in your inventory is your currency; what this represents will differ depending on setting, but in D6 there are always 3 tiers of currency, indicated by emojis: [[c]], [[s]] and [[g]]. In keeping with the theme of sixes, each one is worth 6 of the one below: 6[[c]] is 1[[s]], 6[[s]] is 1[[g]]. No one really wants to be wasting valuable adventuring time rifling through change, so the conversion between units is done automatically by the character sheet. When the [[c]] counter reaches 6, it adds 1 to the [[s]] counter and sets itself to 0. You'll never have to think "oh darn, can you break a [[g]]?".
+
+### So... What's up with those textboxes?
+
+Several bits of the character sheet use something called markdown - a very simple and easy method to write pure text with bits marked as being bold, italic, headings, and so on. You can even add images! Just type out what you like using the syntax described [here](https://www.markdownguide.org/basic-syntax/), then click the 👁 button to view it. To go back to editing, click the ✏ button.
+
+D6 extends the syntax of markdown slightly, adding the following:
+
+- `[[type name]]` will add a coloured box around the name of a damage type, for example: [[fire]]
+
+- `[[skill or stat name]]` will add a little emoji in front of the name of any skill or stat, for example: [[str]], [[cun]], [[lvl]]
+
+- `[[\c]]`, `[[\s]]` or `[[\g]]` will give the emojis for the corresponding unit of currency
+
+- `[number]{skill or stat name}` will multiply the skill or stat in curly brackets by the number in square brackets, as well as adding a summary in brackets after, for example: [1/2]{str}
+
+- `[number]{skill or stat name}d` will do the same as above, only will add the d after the resulting number rather than after the whole output, to indicate that this is a number of dice to roll rather than a flat value.
+
+  You can use the handy [reader](./reader.html) tool to preview how your raw text will look when rendered!
+    </mark-down>
 </div>
 
 
