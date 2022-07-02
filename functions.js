@@ -494,13 +494,13 @@ function custommd(raw) {
   }
 
   // Find all type / stat / currency labels
-  re = /\[\[\w*\]\]/g
+  re = /\[\[\\?\w*\]\]/g
   matches = raw.match(re);
   if (matches) {
     // For each match...
     for (let lbl of matches) {
       // Get inner contents
-      content = lbl.match(/(?<=\[\[)\w*(?=\]\])/g)[0];
+      content = lbl.match(/(?<=\[\[)\\?\w*(?=\]\])/g)[0];
       // Define colors
       let cls
       let style
@@ -533,6 +533,10 @@ function custommd(raw) {
       }
       // Construct HTML output
       let html = `<span class=${cls}${style}>${content}</span>`;
+      if (lbl.includes("\\")) {
+        // If escaped, override replacement and just strip the escape
+        html = lbl.replace("\\", "")
+      }
       // Replace matched string with parsed html
       raw = raw.replace(lbl, html);
     }
