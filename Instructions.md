@@ -78,7 +78,7 @@ D6 extends the syntax of markdown slightly, adding the following:
 
 - `[[skill or stat name]]` will add a little emoji in front of the name of any skill or stat, for example: [[str]], [[cun]], [[lvl]]
 
-- `[[c]]`, `[[s]]` or `[[g]]` will give the emojis for the corresponding unit of currency
+- `[[\c]]`, `[[\s]]` or `[[\g]]` will give the emojis for the corresponding unit of currency
 
 - `[number]{skill or stat name}` will multiply the skill or stat in curly brackets by the number in square brackets, as well as adding a summary in brackets after, for example: [1/2]{str}
 
