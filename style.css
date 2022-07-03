@@ -250,7 +250,8 @@ tooltip {
 }
 
 label:hover > tooltip,
-nav a:hover > tooltip {
+nav a:hover > tooltip,
+section:hover > tooltip {
     display: block;
 }
 
@@ -403,7 +404,9 @@ mark-down[data-readonly] .md-viewer {
     min-height: 0;
     height: auto;
     background-color: transparent;
-    margin-bottom: -1rem;
+}
+mark-down[data-readonly] .md-viewer *:last-child {
+    margin-bottom: 0;
 }
 mark-down .md-viewer, mark-down .md-editor {
   background-color: white;
@@ -426,6 +429,10 @@ mark-down .relval {
 mark-down .relval-context {
   font-weight: 400;
   font-style: italic;
+}
+mark-down.compact .md-viewer {
+    padding: 0;
+    margin: 0;
 }
 
 label, output {
@@ -584,10 +591,16 @@ section#stats.compact {
     grid-template-columns: [left] auto auto auto auto auto auto [right];
 }
 
-section#types {
+section#multipliers {
+    margin-top: 0;
+    grid-template-columns: [left] auto min-content [right];
+    grid-column-start: 2;
+    position: relative;
+}
+section#types-ctrl {
   grid-template-columns: [left] auto auto auto auto auto auto [right];
 }
-section#types.compact {
+section#types-ctrl.compact {
    grid-template-columns: [left] auto min-content auto min-content auto min-content auto min-content [right];
 }
 

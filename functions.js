@@ -191,6 +191,42 @@ function updateCurrency() {
   copperCtrl.value = c
 }
 
+function toggleMultipliers() {
+    // Get multipliers bits
+    let disp = document.getElementById("types-disp");
+    let ctrl = document.getElementById("types-ctrl");
+    let btn = document.getElementById("types-btn");
+    // Toggle checked
+    if (btn.checked | btn.checked === undefined) {
+        btn.checked = false;
+    } else {
+        btn.checked = true;
+    }
+    // Checked = edit mode, unchecked = view mode
+    if (btn.checked) {
+        disp.style.display = "none";
+        ctrl.style.display = "grid";
+        btn.textContent = "👁";
+    } else {
+        disp.style.display = "block";
+        ctrl.style.display = "none";
+        btn.textContent = "✏";
+    }
+    // Update markdown
+    let output = []
+    for (subctrl of ctrl.children) {
+        if (subctrl.tagName === "SELECT" & subctrl.value !== "1") {
+            output.push(
+                `[[${subctrl.id}]] ${subctrl.selectedOptions[0].innerText}`
+            );
+        }
+    }
+    disp.editor.value = output.join(", ");
+    disp.render();
+}
+
+/** Save / Load **/
+
 function getJSON() {
   let outDict = {};
   // Get values

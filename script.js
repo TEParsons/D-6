@@ -6,5 +6,6 @@ for (obj of document.getElementsByClassName("typelbl")) {
   }
 }
 
+document.addEventListener("DOMContentLoaded", toggleMultipliers);
 updateLvl();
 doRest();
