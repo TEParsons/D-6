@@ -191,13 +191,15 @@ function updateCurrency() {
   copperCtrl.value = c
 }
 
-function toggleMultipliers() {
+function toggleMultipliers(mode=undefined) {
     // Get multipliers bits
     let disp = document.getElementById("types-disp");
     let ctrl = document.getElementById("types-ctrl");
     let btn = document.getElementById("types-btn");
     // Toggle checked
-    if (btn.checked | btn.checked === undefined) {
+    if (mode !== undefined) {
+        btn.checked = mode;
+    } else if (btn.checked | btn.checked === undefined) {
         btn.checked = false;
     } else {
         btn.checked = true;
@@ -478,6 +480,7 @@ function load() {
     updateStats();
     updateMaxHp();
     updateCurrency();
+    toggleMultipliers(false);
   });
   // Click to trigger previously defined functions
   loadbuffer.click();
