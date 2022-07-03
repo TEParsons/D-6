@@ -496,7 +496,7 @@ function custommd(raw) {
   // Find all type / stat / currency labels
   re = /\[\[\\?\w*\]\]/g
   matches = raw.match(re);
-  var submap = {}
+  var submap = []
   if (matches) {
     // For each match...
     for (let lbl of matches) {
@@ -538,20 +538,20 @@ function custommd(raw) {
         // If escaped, override replacement and just strip the escape
         html = lbl.replace("\\", "")
       }
-      submap[lbl] = html
+      submap.push({"re": lbl, "repl": html})
     }
   }
   // Replace matched string with parsed html
-  for (lbl in submap) {
+  for (mapping of submap) {
     // Do non-escaped first
-    if (!lbl.includes("\\")) {
-      raw = raw.replace(lbl, submap[lbl]);
+    if (!mapping['re'].includes("\\")) {
+      raw = raw.replace(mapping['re'], mapping['repl']);
     }
   }
-  for (lbl in submap) {
+  for (mapping of submap) {
     // Then do escaped
-    if (lbl.includes("\\")) {
-      raw = raw.replace(lbl, submap[lbl]);
+    if (mapping['re'].includes("\\")) {
+      raw = raw.replace(mapping['re'], mapping['repl']);
     }
   }
 
