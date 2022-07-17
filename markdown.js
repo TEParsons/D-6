@@ -56,12 +56,12 @@ class MarkdownElement extends HTMLElement {
     let mode = this.getAttribute("mode")
     if (mode === "view" || "readonly" in this.dataset) {
       this.editor.hidden = true;
-      this.toggle.mode = "view";
+      this.toggle.mode = this.mode = "view";
       this.toggle.textContent = "✏";
     } else {
       // Otherwise set to edit
       this.viewer.hidden = true;
-      this.toggle.mode = "edit";
+      this.toggle.mode = this.mode = "edit";
       this.toggle.textContent = "👁";
     }
     // Link to settable post-render function

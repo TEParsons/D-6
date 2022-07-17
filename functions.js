@@ -460,6 +460,12 @@ function setJSON(inStr) {
     // Only use relevant values from inDict
     if (emt.id in inDict) {
       emt.value = inDict[emt.id];
+      // Toggle markdown mode
+      if (emt.tagName === "MARK-DOWN") {
+        if (emt.mode === "edit") {
+            emt.toggle.click()
+        }
+      }
     }
   }
   // Set page title
