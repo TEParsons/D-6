@@ -120,7 +120,7 @@ body:after, .typora-export-content:after {
 #write > div,
 #write > figure,
 #write > section,
-#write details,
+#write > details,
 #write nav
 {
   position: relative;
@@ -628,6 +628,33 @@ section#saveload {
   grid-template-rows: 3rem;
 }
 
+section#settings dl {
+    display: grid;
+    grid-template-columns: [left] 6rem [mid] auto [right];
+    grid-template-rows: repeat(3rem auto 1rem);
+    grid-auto-flow: row;
+    column-gap: 2rem;
+}
+section#settings dl dt {
+    grid-column-start: mid;
+    margin-left: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--blue);
+    font-family: var(--head);
+}
+section#settings dl dd {
+    grid-column-start: mid;
+    align-self: start;
+    margin-left: 0;
+}
+section#settings dl img {
+    grid-row-end: span 2;
+}
+section#settings dl hr {
+    grid-column-start: left;
+    grid-column-end: right;
+}
 
 /** Landing Page **/
 
