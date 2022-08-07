@@ -430,7 +430,7 @@ mark-down .relval-context {
   font-weight: 400;
   font-style: italic;
 }
-mark-down.compact .md-viewer {
+#types-disp .md-viewer {
     padding: 0;
     margin: 0;
 }
