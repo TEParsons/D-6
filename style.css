@@ -610,8 +610,14 @@ section#action-stats {
   padding-right: 2cm;
   margin-bottom: 5mm;
 }
-section#action-stats output {
+section#action-stats output,
+section#action-stats input {
     margin-right: 5mm;
+    max-width: 2.5em;
+    font-size: 1.5rem;
+    background-color: transparent;
+    padding: 0;
+    text-align: left;
 }
 
 section#currency {
