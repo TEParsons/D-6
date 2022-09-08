@@ -79,7 +79,7 @@ body:after, .typora-export-content:after {
   content: "";
   background-image: url("https://teparsons.github.io/Krafty/media/binding.svg");
   background-size: cover;
-  background-repeat: repeat;
+  background-repeat: space;
   transform: translateZ(1px);
 }
 
