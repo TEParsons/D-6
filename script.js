@@ -7,5 +7,6 @@ for (obj of document.getElementsByClassName("typelbl")) {
 }
 
 document.addEventListener("DOMContentLoaded", toggleMultipliers);
+document.addEventListener("DOMContentLoaded", toggleRoller);
 updateLvl();
 doRest();

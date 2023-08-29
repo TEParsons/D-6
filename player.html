@@ -90,6 +90,7 @@
             <input type=button value="-" onclick=updateNDice(-1)></input>
         </div>
         <input id=roll type=button value="Roll!" onclick=doRoll()></input>
+        <a onclick="toggleRoller()" id="roll-toggle-btn"></a>
     </section>
 
     <h1>Damage</h1>
@@ -190,7 +191,7 @@
                     <option value=0>x0</option>
                 </select>
             </section>
-            <a class="edit-toggle" id="types-btn" onclick="toggleMultipliers()" onload="console.log('hit')"></a>
+            <a class="edit-toggle" id="types-btn" onclick="toggleMultipliers()"></a>
         </section>
     </section>
 

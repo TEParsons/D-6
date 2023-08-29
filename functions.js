@@ -191,6 +191,40 @@ function updateCurrency() {
   copperCtrl.value = c
 }
 
+function toggleRoller(mode=undefined) {
+  // Get roller's bits
+  let ctrl = document.getElementById("rolling");
+  let btn = document.getElementById("roll-toggle-btn");
+  let disp = [
+    btn,
+    document.getElementById("roll-string")
+  ]
+  // Toggle checked
+  if (mode !== undefined) {
+    btn.checked = mode;
+  } else if (btn.checked) {
+    btn.checked = false;
+  } else {
+    btn.checked = true;
+  }
+  // Checked = visible, unchecked = hidden
+  if (btn.checked) {
+    btn.textContent = "▼";
+  } else {
+    btn.textContent = "▲";
+  }
+  for (let subctrl of ctrl.children) {
+    subctrl.hidden = btn.checked;
+    for (let subsubctrl of subctrl.children) {
+      subsubctrl.hidden = btn.checked;
+    }
+  }
+  // Always show button and roll string
+  for (let obj of disp) {
+    obj.hidden = false;
+  }
+}
+
 function toggleMultipliers(mode=undefined) {
     // Get multipliers bits
     let disp = document.getElementById("types-disp");

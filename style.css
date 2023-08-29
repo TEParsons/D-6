@@ -540,6 +540,9 @@ section#saveload input[type=button] {
   text-align: left;
   font-size: 2rem;
 }
+#roll-toggle-btn {
+  margin: auto;
+}
 
 /** Sections **/
 section {
@@ -577,7 +580,7 @@ label[for=hp] {
 }
 
 section#rolling {
-  grid-template-columns: [left] min-content [outcome] auto [buttons] max-content [right];
+  grid-template-columns: [left] max-content [outcome] auto [buttons] max-content [right];
 }
 input#roll {
   grid-column-start: left;
